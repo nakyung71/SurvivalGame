@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource bgmSource;
 
-    private void awakw()
+    private void awake()
     {
         // ΩÃ±€≈œ √≥∏Æ
         if (Instance == null)
