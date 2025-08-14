@@ -12,6 +12,11 @@ public class UIManager : MonoBehaviour
     {
         Instance = this;
     }
+
+    private void Start()
+    {
+        ShowUI(UIKey.Pop_Inventory, UIState.PopUp);
+    }
     private bool CheckOpenUI(GameObject checkObject)
     {
         foreach (GameObject go in openedUIList)
@@ -24,20 +29,31 @@ public class UIManager : MonoBehaviour
         return false;
     }
 
-    public void ShowUI(string prefabName,UIState state)
+    public void ShowUI(UIKey key,UIState state)
     {
         
-        GameObject go = ResourceManager.Instance.GetPrefab(prefabName);
-        if(CheckOpenUI(go))
+        GameObject go = ResourceManager.Instance.GetPrefab(key);
+        if(go == null)
         {
-            Canvas canvas = ResourceManager.Instance.GetCanvas(state);
-            Instantiate(go, canvas.transform, false);
-            openedUIList.Add(go);
+            Debug.Log("UI를 찾을 수 없습니다");
+            return;
         }
         else
         {
-            go.SetActive(true);
+            if (CheckOpenUI(go))
+            {
+                Canvas canvas = ResourceManager.Instance.GetCanvas(state);
+                go.SetActive(true);
+            }
+            else
+            {
+                Canvas canvas = ResourceManager.Instance.GetCanvas(state);
+                Instantiate(go, canvas.transform, false);
+                openedUIList.Add(go);
+                go.SetActive(true);
+            }
+
         }
-        
+
     }
 }

@@ -7,8 +7,11 @@ public class PopUpUI : BaseUI
     public override UIState State => UIState.PopUp;
 
 
-    Stack<PopUpUI> popUpUIStack=new Stack<PopUpUI>();
+    protected Stack<PopUpUI> popUpUIStack=new Stack<PopUpUI>();
     // Start is called before the first frame update
+    //리스트에 넣는건 본인들이지만, 결국 그걸 관리하는 건 여기서?
+    
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -18,9 +21,24 @@ public class PopUpUI : BaseUI
             DisableUI();
         }
     }
+    
+
+   
     //버튼으로도 끄거나 esc로도 끄기
     void DisableUI()
     {
-        gameObject.SetActive(false);
+        Debug.Log("끄기 시도");
+        Debug.Log(popUpUIStack.Count);
+        if(popUpUIStack.Count > 0)
+        {
+            
+            PopUpUI popUp = popUpUIStack.Pop();
+            if (popUp != null)
+            {
+                popUp.gameObject.SetActive(false);
+            }
+        }
+       
+        
     }
 }
