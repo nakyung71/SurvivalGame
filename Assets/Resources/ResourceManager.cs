@@ -6,11 +6,11 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour
 {
     public static ResourceManager Instance;
-    List<GameObject> UIList = new List<GameObject>();
+    List<BaseUI> UIList = new List<BaseUI>();
     Canvas staticCanvas;
     Canvas popUpCanvas;
 
-    Dictionary<string,GameObject> prefabDictionary = new Dictionary<string,GameObject>();
+    Dictionary<UIKey,GameObject> prefabDictionary = new Dictionary<UIKey,GameObject>();
 
 
     private void Awake()
@@ -18,27 +18,27 @@ public class ResourceManager : MonoBehaviour
         Instance = this;
         staticCanvas = GameObject.FindFirstObjectByType<StaticUI>().GetComponent<Canvas>();
         popUpCanvas= GameObject.FindFirstObjectByType<PopUpUI>().GetComponent<Canvas>();
-    }
-    void Start()
-    {
-        UIList = Resources.LoadAll<GameObject>("UI").ToList();
-        Debug.Log(UIList.Count);
+        UIList = Resources.LoadAll<BaseUI>("UI").ToList();
+
         AddUI();
     }
+    
 
 
     void AddUI()
     {
-        foreach (GameObject go in UIList)
+        foreach (BaseUI go in UIList)
         {
-            prefabDictionary.Add(go.name, go); 
+            prefabDictionary.Add(go.UIKey, go.gameObject);
+            Debug.Log(go.UIKey);
+            Debug.Log(go.gameObject.name);
         }
-        
+       
     }
 
-    public GameObject GetPrefab(string name)
+    public GameObject GetPrefab(UIKey key)
     {
-        return prefabDictionary[name];
+        return prefabDictionary[key];
     }
     public Canvas GetCanvas(UIState state)
     {
