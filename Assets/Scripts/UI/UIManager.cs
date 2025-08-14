@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        ShowUI(UIKey.Pop_Inventory, UIState.PopUp);
+        
     }
     private bool CheckOpenUI(GameObject checkObject)
     {

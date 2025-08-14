@@ -22,10 +22,7 @@ public class ResourceManager : MonoBehaviour
 
         AddUI();
     }
-    void Start()
-    {
-        
-    }
+    
 
 
     void AddUI()

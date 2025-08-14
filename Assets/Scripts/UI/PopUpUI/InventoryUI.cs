@@ -8,6 +8,8 @@ public class InventoryUI : PopUpUI
     private void OnEnable()
     {
         popUpUIStack.Push(this);
+        Debug.Log("스택에 넣음");
+        Debug.Log(popUpUIStack.Count);
     }
    
     // Update is called once per frame
