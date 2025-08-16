@@ -851,9 +851,9 @@ MonoBehaviour:
   runSpeed: 3
   detectDistance: 5
   minWanderDistance: 5
-  maxWanderDistance: 0
-  minWanderWaitTime: 0
-  maxWanderWaitTime: 0
+  maxWanderDistance: 10
+  minWanderWaitTime: 1
+  maxWanderWaitTime: 2
   fieldOfView: 120
 --- !u!195 &1292688211
 NavMeshAgent:
