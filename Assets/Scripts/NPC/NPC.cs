@@ -10,7 +10,7 @@ public enum AIState
     Run
 }
 
-public class NPCKitty : MonoBehaviour
+public class NPC : MonoBehaviour
 {
     [Header("Stats")]
     public int health;
