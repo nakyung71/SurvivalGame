@@ -216,7 +216,19 @@ MonoBehaviour:
     m_ActionId: a4c2bbc2-c1d8-414b-858f-7ae842a9052e
     m_ActionName: Player/Inventory[/Keyboard/tab]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 478157126}
+        m_TargetAssemblyTypeName: Interaction, Assembly-CSharp
+        m_MethodName: OnInteractInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3b080a4c-2d97-4684-ab24-b1395007e7ed
     m_ActionName: Player/Farming[/Keyboard/e]
   - m_PersistentCalls:
@@ -280,6 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   condition: {fileID: 0}
+  ItemData: {fileID: 0}
 --- !u!54 &478157124
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -330,6 +343,25 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &478157126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478157118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ace5e7c4f88e0743a90bebbd1f49abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkRate: 0.05
+  maxCheckDistance: 3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  curInteractGameObject: {fileID: 0}
+  promptText: {fileID: 0}
 --- !u!1 &695645944
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +836,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 478157122}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 478157126}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 478157124}
