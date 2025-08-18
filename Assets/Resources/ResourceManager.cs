@@ -30,8 +30,7 @@ public class ResourceManager : MonoBehaviour
         foreach (BaseUI go in UIList)
         {
             prefabDictionary.Add(go.UIKey, go.gameObject);
-            Debug.Log(go.UIKey);
-            Debug.Log(go.gameObject.name);
+           
         }
        
     }

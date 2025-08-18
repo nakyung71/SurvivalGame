@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 5170854455733382994}
   - component: {fileID: 5354166631672624340}
   - component: {fileID: 5083642056823906168}
+  - component: {fileID: 5363318292009695564}
   m_Layer: 5
   m_Name: HealthBarBG
   m_TagString: Untagged
@@ -316,6 +317,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5363318292009695564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526305987473235415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e11c0172f0427d4694555e91d0625d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curValue: 0
+  startValue: 0
+  maxValue: 0
+  passiveValue: 0
+  uiBar: {fileID: 4577342511350088672}
 --- !u!1 &1639855324815902626
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +704,7 @@ GameObject:
   - component: {fileID: 4995900237016733180}
   - component: {fileID: 8381082315886746555}
   - component: {fileID: 8251390425285340038}
+  - component: {fileID: 195204604459812174}
   m_Layer: 5
   m_Name: StaminaBarBG
   m_TagString: Untagged
@@ -752,6 +771,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &195204604459812174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5669272451966314636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e11c0172f0427d4694555e91d0625d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curValue: 0
+  startValue: 0
+  maxValue: 0
+  passiveValue: 0
+  uiBar: {fileID: 4333138868818644661}
 --- !u!1 &5733139853677933950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1191,7 @@ GameObject:
   - component: {fileID: 3424984605728243944}
   - component: {fileID: 2123028946981190691}
   - component: {fileID: 2905449859989501155}
+  - component: {fileID: 8244899866288820611}
   m_Layer: 5
   m_Name: HungerBarBG
   m_TagString: Untagged
@@ -1221,6 +1258,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8244899866288820611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760807992254580761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e11c0172f0427d4694555e91d0625d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curValue: 0
+  startValue: 0
+  maxValue: 0
+  passiveValue: 0
+  uiBar: {fileID: 6131429357061557589}
 --- !u!1 &9118694473688593633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,6 +1325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03917f6a90788fb4190e424bc38bc45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1639855324815902626}
-  hungerBar: {fileID: 2928111034792116779}
-  staminaBar: {fileID: 5357583796214537696}
+  health: {fileID: 5363318292009695564}
+  hunger: {fileID: 8244899866288820611}
+  stamina: {fileID: 195204604459812174}

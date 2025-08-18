@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class GameUI : StaticUI
 {
 
-    [SerializeField] Image healthBar;
-    [SerializeField] Image hungerBar;
-    [SerializeField] Image staminaBar;
+    public Condition health;
+    public Condition hunger;
+    public Condition stamina;
     // Start is called before the first frame update
     void Start()
     {
-        
+        CharacterManager.Instance.Player.condition.gameUI = this;
     }
 
     // Update is called once per frame
