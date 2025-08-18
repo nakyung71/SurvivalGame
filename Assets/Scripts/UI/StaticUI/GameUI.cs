@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameUI : StaticUI
 {
+
+    [SerializeField] GameObject healthBar;
+    [SerializeField] GameObject hungerBar;
+    [SerializeField] GameObject staminaBar;
     // Start is called before the first frame update
     void Start()
     {

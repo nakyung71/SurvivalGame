@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
         {
             if (CheckOpenUI(go))
             {
-                Canvas canvas = ResourceManager.Instance.GetCanvas(state);
+                
                 go.SetActive(true);
             }
             else
