@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class DialogueUI : PopUpUI
+
+public interface ITalkable
 {
-    public override UIKey UIKey => UIKey.Pop_Dialogue;
+    DialogueData DialogueData { get; }
+    public void Talk();
+}
+public class DialogueUI :MonoBehaviour
+{
+    
+
     private void OnEnable()
     {
-        popUpUIStack.Push(this);
+        
     }
 }

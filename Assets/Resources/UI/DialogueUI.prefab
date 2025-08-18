@@ -90,6 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe1598bbc1d98a489ac3a059574b2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speakerNameText: {fileID: 8170174073776992902}
+  dialogueText: {fileID: 7947601121710933525}
 --- !u!1 &6418861555741230619
 GameObject:
   m_ObjectHideFlags: 0
