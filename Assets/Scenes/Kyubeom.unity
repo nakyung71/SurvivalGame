@@ -128,11 +128,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
   m_PrefabInstance: {fileID: 720026901}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &478157119 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
-  m_PrefabInstance: {fileID: 720026901}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &478157120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
@@ -212,7 +207,19 @@ MonoBehaviour:
     m_ActionId: f30a54b6-142b-4324-ac9e-2dde6c0c5647
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 478157122}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a4c2bbc2-c1d8-414b-858f-7ae842a9052e
     m_ActionName: Player/Inventory[/Keyboard/tab]
   - m_PersistentCalls:
@@ -269,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  runSpeed: 1
   JumpPower: 5
   groundLayerMask:
     serializedVersion: 2
@@ -277,7 +285,7 @@ MonoBehaviour:
   minXLook: -45
   maxXLook: 45
   lookSensitivity: 0.1
-  animator: {fileID: 478157119}
+  canLook: 1
 --- !u!114 &478157123
 MonoBehaviour:
   m_ObjectHideFlags: 0

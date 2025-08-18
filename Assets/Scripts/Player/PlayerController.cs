@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
+    public float runSpeed = 1;
     public float JumpPower;
     private Vector2 moveInput;
     private Vector2 runInput;
@@ -20,11 +22,15 @@ public class PlayerController : MonoBehaviour
     private float cameraMouseDelta;
     public float lookSensitivity;
     private Vector2 mouseDelta;
+    public bool canLook = true;
 
+    public Action inventory;
     private Rigidbody rb;
-    public Animator animator;
+    private Animator animator;
     bool movingbool;
     bool backMovingbool;
+    bool runbool;
+    bool backrunbool;
 
     private void Awake()
     {
@@ -44,7 +50,10 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        CameraLook();
+        if (canLook)
+        {
+            CameraLook();
+        }
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -71,18 +80,25 @@ public class PlayerController : MonoBehaviour
     }
     private void Move()
     {
-        if (moveInput.y == 1)
+        if (moveInput.y == 1 || moveInput.y == -1)
         {
             Vector3 dir = transform.forward * moveInput.y;
-            dir *= moveSpeed;
+            dir *= moveSpeed * runSpeed;
             dir.y = rb.velocity.y;
             rb.velocity = dir;
             animator.SetBool("isMoving", movingbool);
             animator.SetBool("isBackMoving", backMovingbool);
         }
-        else if(moveInput.y == 2)
+        else if(moveInput.y == 1.5)
         {
-
+            animator.SetBool("isMoving", movingbool);
+            animator.SetBool("isBackMoving", backMovingbool);
+        }
+        else if(moveInput.y == 0)
+        {
+            rb.velocity = new Vector3(0,rb.velocity.y,0);
+            animator.SetBool("isMoving", movingbool);
+            animator.SetBool("isBackMoving", backMovingbool);
         }
     }
 
@@ -104,11 +120,11 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            moveInput = context.ReadValue<Vector2>();
+            runSpeed = 1.5f;
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            moveInput = Vector2.zero;
+            runSpeed = 1;
         }
     }
 
@@ -117,8 +133,9 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
             rb.AddForce(Vector2.up * JumpPower, ForceMode.Impulse);
+            animator.ResetTrigger("isJump");
+            animator.SetTrigger("isJump");
         }
-        Debug.Log(IsGrounded());
     }
 
     bool IsGrounded()
@@ -138,5 +155,21 @@ public class PlayerController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if(context.phase==InputActionPhase.Started)
+        {
+            inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
     }
 }
