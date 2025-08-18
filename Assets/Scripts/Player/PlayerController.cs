@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,11 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
+    public float runSpeed = 1;
+    public float JumpPower;
     private Vector2 moveInput;
+    private Vector2 runInput;
+    public LayerMask groundLayerMask;
 
     [Header("Look")]
     public Transform CameraContainer;
@@ -17,10 +22,15 @@ public class PlayerController : MonoBehaviour
     private float cameraMouseDelta;
     public float lookSensitivity;
     private Vector2 mouseDelta;
+    public bool canLook = true;
 
+    public Action inventory;
     private Rigidbody rb;
-    public Animator animator;
-    bool movingboolValue;
+    private Animator animator;
+    bool movingbool;
+    bool backMovingbool;
+    bool runbool;
+    bool backrunbool;
 
     private void Awake()
     {
@@ -40,28 +50,56 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        CameraLook();
+        if (canLook)
+        {
+            CameraLook();
+        }
     }
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
             moveInput = context.ReadValue<Vector2>();
-            movingboolValue = true;
+            if (moveInput.y == 1)
+            {
+                movingbool = true;
+                backMovingbool = false;
+            }
+            else
+            {
+                backMovingbool = true;
+                movingbool = false;
+            }
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             moveInput = Vector2.zero;
-            movingboolValue = false;
+            movingbool = false;
+            backMovingbool = false;
         }
     }
     private void Move()
     {
-        Vector3 dir = transform.forward * moveInput.y + transform.right * moveInput.x;
-        dir *= moveSpeed;
-        dir.y = rb.velocity.y;
-        rb.velocity = dir;
-        animator.SetBool("isMoving",movingboolValue);
+        if (moveInput.y == 1 || moveInput.y == -1)
+        {
+            Vector3 dir = transform.forward * moveInput.y;
+            dir *= moveSpeed * runSpeed;
+            dir.y = rb.velocity.y;
+            rb.velocity = dir;
+            animator.SetBool("isMoving", movingbool);
+            animator.SetBool("isBackMoving", backMovingbool);
+        }
+        else if(moveInput.y == 1.5)
+        {
+            animator.SetBool("isMoving", movingbool);
+            animator.SetBool("isBackMoving", backMovingbool);
+        }
+        else if(moveInput.y == 0)
+        {
+            rb.velocity = new Vector3(0,rb.velocity.y,0);
+            animator.SetBool("isMoving", movingbool);
+            animator.SetBool("isBackMoving", backMovingbool);
+        }
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -76,5 +114,62 @@ public class PlayerController : MonoBehaviour
         CameraContainer.localEulerAngles = new Vector3(-cameraMouseDelta,0,0);
 
         transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            runSpeed = 1.5f;
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            runSpeed = 1;
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started && IsGrounded())
+        {
+            rb.AddForce(Vector2.up * JumpPower, ForceMode.Impulse);
+            animator.ResetTrigger("isJump");
+            animator.SetTrigger("isJump");
+        }
+    }
+
+    bool IsGrounded()
+    {
+        Ray[] rays = new Ray[4]
+        {
+            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down)
+        };
+        for (int i = 0; i < rays.Length; i++)
+        {
+            if (Physics.Raycast(rays[i],0.2f,groundLayerMask))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if(context.phase==InputActionPhase.Started)
+        {
+            inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
     }
 }
