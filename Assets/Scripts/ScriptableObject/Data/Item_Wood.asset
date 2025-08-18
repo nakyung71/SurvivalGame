@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21f03a89fc6238a49936e878121ebca7, type: 3}
+  m_Name: Item_Wood
+  m_EditorClassIdentifier: 
+  displayName: "\uB098\uBB34"
+  description: "\uC790\uC6D0"
+  type: 0
+  icon: {fileID: 0}
+  dropPrefab: {fileID: 7228472307722872976, guid: 1c3d4fceac77302469cea03f422fb03b, type: 3}
+  canStack: 1
+  maxStackAmount: 64
+  consumables: []
