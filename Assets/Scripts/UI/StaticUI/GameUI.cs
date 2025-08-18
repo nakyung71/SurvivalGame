@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameUI : StaticUI
 {
 
-    [SerializeField] GameObject healthBar;
-    [SerializeField] GameObject hungerBar;
-    [SerializeField] GameObject staminaBar;
+    [SerializeField] Image healthBar;
+    [SerializeField] Image hungerBar;
+    [SerializeField] Image staminaBar;
     // Start is called before the first frame update
     void Start()
     {
