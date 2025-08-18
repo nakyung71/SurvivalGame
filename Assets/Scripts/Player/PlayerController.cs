@@ -71,12 +71,19 @@ public class PlayerController : MonoBehaviour
     }
     private void Move()
     {
-        Vector3 dir = transform.forward * moveInput.y;
-        dir *= moveSpeed;
-        dir.y = rb.velocity.y;
-        rb.velocity = dir;
-        animator.SetBool("isMoving", movingbool);
-        animator.SetBool("isBackMoving", backMovingbool);
+        if (moveInput.y == 1)
+        {
+            Vector3 dir = transform.forward * moveInput.y;
+            dir *= moveSpeed;
+            dir.y = rb.velocity.y;
+            rb.velocity = dir;
+            animator.SetBool("isMoving", movingbool);
+            animator.SetBool("isBackMoving", backMovingbool);
+        }
+        else if(moveInput.y == 2)
+        {
+
+        }
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -97,17 +104,12 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            runInput = context.ReadValue<Vector2>();
+            moveInput = context.ReadValue<Vector2>();
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            runInput.y = 1;
+            moveInput = Vector2.zero;
         }
-    }
-
-    private void Run()
-    {
-
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -116,20 +118,21 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector2.up * JumpPower, ForceMode.Impulse);
         }
+        Debug.Log(IsGrounded());
     }
 
     bool IsGrounded()
     {
-        Ray[] rays = new Ray[4];
+        Ray[] rays = new Ray[4]
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down);
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down);
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down);
-            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down);
-        }
+            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down)
+        };
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i],10f,groundLayerMask))
+            if (Physics.Raycast(rays[i],0.2f,groundLayerMask))
             {
                 return true;
             }
