@@ -11,7 +11,13 @@ public class InventoryUI : PopUpUI
         Debug.Log("스택에 넣음");
         Debug.Log(popUpUIStack.Count);
     }
-   
+
+    public override void Awake()
+    {
+        base.Awake();
+        Debug.Log(transform.name + "@@@");
+    }
+
     // Update is called once per frame
     void Update()
     {
