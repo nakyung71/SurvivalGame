@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class ItemSlot : MonoBehaviour
+public class ItemSlot : MonoBehaviour,IPointerClickHandler
 {
     public ItemData Item;
 
@@ -27,6 +28,7 @@ public class ItemSlot : MonoBehaviour
     }
     private void OnEnable()
     {
+        Inventory=GetComponentInParent<InventoryUI>();
         outine.enabled = equipped;
     }
 
@@ -56,6 +58,11 @@ public class ItemSlot : MonoBehaviour
     }
 
     public void OnClickButton()
+    {
+        
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
     {
         Inventory.SelectItem(index);
     }

@@ -11,10 +11,7 @@ public class PopUpUI : BaseUI
     // Start is called before the first frame update
     //리스트에 넣는건 본인들이지만, 결국 그걸 관리하는 건 여기서?
 
-    public virtual void Awake()
-    {
-        Debug.Log(transform.name+"!!!");
-    }
+    
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))

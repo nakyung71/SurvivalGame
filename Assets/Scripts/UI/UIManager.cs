@@ -6,6 +6,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+    public GameUI gameUI;
+    public InventoryUI inventoryUI;
+    public DialogueUI dialogueUI;
     List<GameObject> openedUIList = new List<GameObject>();
 
     private void Awake()
@@ -15,9 +18,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //테스트용
-        ShowUI(UIKey.Pop_Inventory, UIState.PopUp);
-        ShowUI(UIKey.Pop_DefaultPopUp, UIState.PopUp);
+       
     }
     private bool CheckOpenUI(GameObject checkObject)
     {
@@ -34,28 +35,30 @@ public class UIManager : MonoBehaviour
     public void ShowUI(UIKey key,UIState state)
     {
         
-        GameObject go = ResourceManager.Instance.GetPrefab(key);
-        if(go == null)
-        {
-            Debug.Log("UI를 찾을 수 없습니다");
-            return;
-        }
-        else
-        {
-            if (CheckOpenUI(go))
-            {
-                
-                go.SetActive(true);
-            }
-            else
-            {
-                Canvas canvas = ResourceManager.Instance.GetCanvas(state);
-                Instantiate(go, canvas.transform, false);
-                openedUIList.Add(go);
-                go.SetActive(true);
-            }
 
-        }
+
+        //GameObject go = ResourceManager.Instance.GetPrefab(key);
+        //if(go == null)
+        //{
+        //    Debug.Log("UI를 찾을 수 없습니다");
+        //    return;
+        //}
+        //else
+        //{
+        //    if (CheckOpenUI(go))
+        //    {
+                
+        //        go.SetActive(true);
+        //    }
+        //    else
+        //    {
+        //        Canvas canvas = ResourceManager.Instance.GetCanvas(state);
+        //        Instantiate(go, canvas.transform, false);
+        //        openedUIList.Add(go);
+        //        go.SetActive(true);
+        //    }
+
+        //}
 
     }
 }

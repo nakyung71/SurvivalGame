@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogueText;
     bool moveToNextLine;
 
-    [SerializeField] DialogueData testDialogueData;
+    
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        SetTalk(testDialogueData);
+        
     }
 
     private void Update()

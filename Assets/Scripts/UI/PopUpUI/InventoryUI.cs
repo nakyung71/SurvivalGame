@@ -21,6 +21,7 @@ public class InventoryUI : PopUpUI
     public GameObject equipButton;
     public GameObject unequipButton;
     public GameObject dropButton;
+    public GameObject inventoryWindow;
 
     private PlayerController controller;
     private PlayerCondition condition;
@@ -30,37 +31,37 @@ public class InventoryUI : PopUpUI
 
     int curEquipIndex;
 
-
+    bool isOpen;
 
     public override UIKey UIKey => UIKey.Pop_Inventory;
 
 
+    public void Init()
+    {
+        
+    }
+
     private void OnEnable()
     {
+        
         popUpUIStack.Push(this);
         Debug.Log("스택에 넣음");
         Debug.Log(popUpUIStack.Count);
-        GetComponentInParent<InventoryUI>();
+        
+        
+    }
+    private void Start()
+    {
         controller = CharacterManager.Instance.Player.controller;
         condition = CharacterManager.Instance.Player.condition;
         dropPosition = CharacterManager.Instance.Player.dropPosition;
 
 
-        //controller.Inventory += Toggle;
+        controller.inventory += Toggle;
 
         CharacterManager.Instance.Player.addItem += AddItem;
-    }
 
-    public override void Awake()
-    {
-        base.Awake();
-        Debug.Log(transform.name + "@@@");
-    }
-    void Start()
-    {
-        
-
-        
+        inventoryWindow.SetActive(false);
         slots = new ItemSlot[slotPanel.childCount];
 
         for (int i = 0; i < slots.Length; i++)
@@ -72,6 +73,8 @@ public class InventoryUI : PopUpUI
         }
         ClearSelectedItemWindow();
     }
+
+
 
 
     void ClearSelectedItemWindow()
@@ -87,27 +90,30 @@ public class InventoryUI : PopUpUI
         dropButton.SetActive(false);
     }
 
-    //public void Toggle()
-    //{
-    //    if (IsOpen())
-    //    {
-    //        inventoryWindow.SetActive(false);
-    //    }
-    //    else
-    //    {
-    //        inventoryWindow.SetActive(true);
-    //    }
-    //}
+    public void Toggle()
+    {
+        if (IsOpen())
+        {
+            inventoryWindow.SetActive(false);
+        }
+        else
+        {
+            inventoryWindow.SetActive(true);
+        }
+    }
 
-    //public bool IsOpen()
-    //{
-    //    return inventoryWindow.activeInHierarchy;
-    //}
+    public bool IsOpen()
+    {
+        return inventoryWindow.activeInHierarchy;
+    }
+
+
 
     void AddItem()
     {
+        Debug.Log("아이템 등록");
         ItemData data = CharacterManager.Instance.Player.itemData;
-
+        Debug.Log(data.name);
         if (data.canStack)
         {
             ItemSlot slot = GetItemStack(data);
