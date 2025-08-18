@@ -10,7 +10,7 @@ public enum AIState1
     Attack
 }
 
-public class Enemy : MonoBehaviour// , IDamagable
+public class Enemy : MonoBehaviour, IDamageable
 {
     [Header("Stats")]
     public int health;
@@ -114,16 +114,22 @@ public class Enemy : MonoBehaviour// , IDamagable
 
     void AttackingUpdate()
     {
-        if (playerDistance < attackDistance && IsPlayerInFieldOfView())
+        if (Time.time - lastAttackTime > attackRate)
         {
-            agent.isStopped = true;
-            if (Time.time - lastAttackTime > attackRate)
+            lastAttackTime = Time.time;
+
+            var cm = CharacterManager.Instance;
+            var player = cm != null ? cm.Player : null;
+            var ctrl = player != null ? player.controller : null;
+
+            var target = ctrl != null ? ctrl.GetComponent<IDamageable>() : null;
+            if (target != null)
             {
-                lastAttackTime = Time.time;
-                CharacterManager.Instance.Player.controller.GetComponent<IDamagable>()/*. TakePhysicalDamage(damage) */;
-                animator.speed = 1;
-                animator.SetTrigger("Attack");
+                target.TakePhysicalDamage(damage);  // 플레이어에게 데미지 적용
             }
+
+            animator.speed = 1;
+            animator.SetTrigger("Attack");
         }
         else
         {

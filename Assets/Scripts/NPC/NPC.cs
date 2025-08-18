@@ -10,7 +10,7 @@ public enum AIState
     Run
 }
 
-public class NPC : MonoBehaviour, IDamagable
+public class NPC : MonoBehaviour, IDamageable
 {
     [Header("Stats")]
     public int health;
@@ -35,6 +35,8 @@ public class NPC : MonoBehaviour, IDamagable
 
     private Animator animator;
     private SkinnedMeshRenderer[] meshRenderers;
+
+    private int safeDistance = 7;
 
     private void Awake()
     {
