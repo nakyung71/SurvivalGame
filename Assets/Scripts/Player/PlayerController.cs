@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
     bool movingbool;
     bool backMovingbool;
     bool runbool;
-    bool backrunbool;
 
     private void Awake()
     {
