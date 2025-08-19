@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public interface IDamagable
 {
@@ -10,28 +11,55 @@ public interface IDamagable
 public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public GameUI gameUI;
+    private Animator animator;
+    private PlayerInput PlayerInput;
 
     Condition health { get { return gameUI.health; } }
     Condition hunger { get { return gameUI.hunger; } }
+    Condition thirst { get { return gameUI.thirst; } }
+    Condition temperature { get { return gameUI.temperature; } }
     Condition stamina { get { return gameUI.stamina; } }
 
     public float noHungerHealthDecay;
+    public float noThirstHealthDecay;
+    public float noTemperatureHealthDecay;
     public event Action onTakeDamage;
 
-   
+    private bool isDead = false;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        PlayerInput = GetComponent<PlayerInput>();
+    }
+
     private void Update()
     {
         hunger.TakeDamage(hunger.passiveValue * Time.deltaTime);
+        thirst.TakeDamage(thirst.passiveValue * Time.deltaTime);
+        temperature.TakeDamage(temperature.passiveValue * Time.deltaTime);
         stamina.Add(stamina.passiveValue * Time.deltaTime);
 
-        if (hunger.curValue < 0f)
+        if (hunger.curValue <= 0f)
         {
             health.TakeDamage(noHungerHealthDecay * Time.deltaTime);
         }
 
-        if (health.curValue < 0f)
+        if (thirst.curValue <= 0f)
+        {
+            health.TakeDamage(noThirstHealthDecay * Time.deltaTime);
+        }
+
+        if (temperature.curValue <= 0f)
+        {
+            health.TakeDamage(noTemperatureHealthDecay * Time.deltaTime);
+        }
+
+        if (health.curValue <= 0f && !isDead)
         {
             Die();
+            isDead = true;
+            PlayerInput.enabled = false;
         }
     }
 
@@ -45,9 +73,20 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         hunger.Add(amount);
     }
 
+    public void Drink(float amount)
+    {
+        thirst.Add(amount);
+    }
+
+    public void WarmUp(float amount)
+    {
+        temperature.Add(amount);
+    }
+
     public void Die()
     {
         Debug.Log("플레이어가 죽었다.");
+        animator.SetTrigger("isDie");
     }
 
     public void TakePhsicalDamage(int damage)
