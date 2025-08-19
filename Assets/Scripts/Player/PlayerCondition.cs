@@ -58,8 +58,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         if (health.curValue <= 0f && !isDead)
         {
             Die();
-            isDead = true;
-            PlayerInput.enabled = false;
+            isDead = true;//죽었을 때 애니메이터 한 번 켜기 위해
+            PlayerInput.enabled = false;//죽었을 때 안 움직이게 하기 위해 재시작시 true로 만들어야 함
         }
     }
 
