@@ -18,7 +18,7 @@ public class Condition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        uiBar.fillAmount = GetPercentage();
     }
 
     float GetPercentage()
