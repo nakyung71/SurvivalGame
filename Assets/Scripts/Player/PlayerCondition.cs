@@ -13,20 +13,36 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     Condition health { get { return gameUI.health; } }
     Condition hunger { get { return gameUI.hunger; } }
+    Condition thirst { get { return gameUI.thirst; } }
+    Condition temperature { get { return gameUI.temperature; } }
     Condition stamina { get { return gameUI.stamina; } }
 
     public float noHungerHealthDecay;
+    public float noThirstHealthDecay;
+    public float noTemperatureHealthDecay;
     public event Action onTakeDamage;
 
    
     private void Update()
     {
         hunger.TakeDamage(hunger.passiveValue * Time.deltaTime);
+        thirst.TakeDamage(thirst.passiveValue * Time.deltaTime);
+        temperature.TakeDamage(temperature.passiveValue * Time.deltaTime);
         stamina.Add(stamina.passiveValue * Time.deltaTime);
 
         if (hunger.curValue < 0f)
         {
             health.TakeDamage(noHungerHealthDecay * Time.deltaTime);
+        }
+
+        if (thirst.curValue < 0f)
+        {
+            thirst.TakeDamage(noThirstHealthDecay * Time.deltaTime);
+        }
+
+        if (temperature.curValue < 0f)
+        {
+            temperature.TakeDamage(noTemperatureHealthDecay * Time.deltaTime);
         }
 
         if (health.curValue < 0f)
@@ -43,6 +59,16 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public void Eat(float amount)
     {
         hunger.Add(amount);
+    }
+
+    public void Drink(float amount)
+    {
+        thirst.Add(amount);
+    }
+
+    public void WarmUp(float amount)
+    {
+        temperature.Add(amount);
     }
 
     public void Die()
