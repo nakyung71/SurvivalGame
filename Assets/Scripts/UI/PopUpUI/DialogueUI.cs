@@ -4,11 +4,7 @@ using TMPro;
 using UnityEngine;
 
 
-public interface ITalkable
-{
-    DialogueData DialogueData { get; }
-    public void Talk();
-}
+
 public class DialogueUI :MonoBehaviour
 {
     

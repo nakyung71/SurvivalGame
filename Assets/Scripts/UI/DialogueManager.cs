@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
+public interface ITalkable
+{
+    DialogueData DialogueData { get; }
+    public void Talk();
+}
 public class DialogueManager : MonoBehaviour
 {
 
@@ -12,7 +18,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogueText;
     bool moveToNextLine;
 
-    [SerializeField] DialogueData testDialogueData;
+    
 
     private void Awake()
     {
@@ -21,7 +27,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        SetTalk(testDialogueData);
+        
     }
 
     private void Update()
@@ -53,7 +59,7 @@ public class DialogueManager : MonoBehaviour
         }
         yield return new WaitUntil(() => moveToNextLine);
         
-            Debug.Log("¥Î»≠ √¢ ¥›±‚");
+        dialogueUI.SetActive(false);
         
        
 

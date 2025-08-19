@@ -39,5 +39,10 @@ public class DefaultPopUpUI : PopUpUI
 
     }
 
+    private void Update()
+    {
+        
+    }
+
 
 }

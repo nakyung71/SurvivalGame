@@ -63,43 +63,45 @@ public class PlayerController : MonoBehaviour
             if (moveInput.y == 1)
             {
                 movingbool = true;
-                backMovingbool = false;
+                backMovingbool = false;                
             }
             else
             {
                 backMovingbool = true;
                 movingbool = false;
             }
+            animator.SetBool("isMoving", movingbool);
+            animator.SetBool("isBackMoving", backMovingbool);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             moveInput = Vector2.zero;
             movingbool = false;
             backMovingbool = false;
+            animator.SetBool("isMoving", movingbool);
+            animator.SetBool("isBackMoving", backMovingbool);
         }
     }
     private void Move()
     {
-        if (moveInput.y == 1 || moveInput.y == -1)
-        {
-            Vector3 dir = transform.forward * moveInput.y;
+
+            Vector3 dir = transform.forward * moveInput.y + transform.right * moveInput.x;
             dir *= moveSpeed * runSpeed;
             dir.y = rb.velocity.y;
             rb.velocity = dir;
-            animator.SetBool("isMoving", movingbool);
-            animator.SetBool("isBackMoving", backMovingbool);
-        }
-        else if(moveInput.y == 1.5)
-        {
-            animator.SetBool("isMoving", movingbool);
-            animator.SetBool("isBackMoving", backMovingbool);
-        }
-        else if(moveInput.y == 0)
-        {
-            rb.velocity = new Vector3(0,rb.velocity.y,0);
-            animator.SetBool("isMoving", movingbool);
-            animator.SetBool("isBackMoving", backMovingbool);
-        }
+            
+
+        //else if(moveInput.y == 1.5)
+        //{
+        //    animator.SetBool("isMoving", movingbool);
+        //    animator.SetBool("isBackMoving", backMovingbool);
+        //}
+        //else if(moveInput.y == 0)
+        //{
+        //    rb.velocity = new Vector3(0,rb.velocity.y,0);
+        //    animator.SetBool("isMoving", movingbool);
+        //    animator.SetBool("isBackMoving", backMovingbool);
+        //}
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -118,13 +120,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Started)
         {
-            runSpeed = 1.5f;
+            runSpeed = 1.5f; 
+            runbool = true;
+            animator.SetBool("isRun",runbool);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             runSpeed = 1;
+            runbool = false;
+            animator.SetBool("isRun", runbool);
         }
     }
 
@@ -149,7 +155,7 @@ public class PlayerController : MonoBehaviour
         };
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i],0.2f,groundLayerMask))
+            if (Physics.Raycast(rays[i],0.3f,groundLayerMask))
             {
                 return true;
             }
