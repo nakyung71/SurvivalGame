@@ -32,9 +32,11 @@ public class Interaction : MonoBehaviour
 
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
+            //¿©±â±îÁø ±¦Âú°í
 
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
             {
+                
                 if (hit.collider.gameObject != curInteractGameObject)
                 {
                     curInteractGameObject = hit.collider.gameObject;
@@ -46,7 +48,7 @@ public class Interaction : MonoBehaviour
             {
                 curInteractGameObject = null;
                 curInteractable = null;
-                //promptText.gameObject.SetActive(false);
+                promptText.gameObject.SetActive(false);
             }
         }
 

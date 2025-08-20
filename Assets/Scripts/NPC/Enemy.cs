@@ -10,7 +10,7 @@ public enum AIState1
     Attack
 }
 
-public class Enemy : MonoBehaviour// , IDamagable
+public class Enemy : MonoBehaviour, IDamageable
 {
     [Header("Stats")]
     public int health;
@@ -52,14 +52,28 @@ public class Enemy : MonoBehaviour// , IDamagable
 
     private void Start()
     {
-        SetState(AIState1.Walk);
+        // NavMesh 위에 올라갈 때까지 대기한 뒤 초기화/상태전환
+        StartCoroutine(InitAfterPlaced());
+    }
+
+    IEnumerator InitAfterPlaced()
+    {
+        // agent가 활성, NavMesh 위에 배치될 때까지 대기
+        yield return new WaitUntil(() => IsAgentReady(agent));
+
+        agent.isStopped = false;
+        SetState(AIState1.Idle);
     }
 
     private void Update()
     {
+        if (!IsAgentReady(agent))
+            return; // 아직 NavMesh에 안 올라갔으면 아무것도 하지 않음
+
         playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position);
 
-        animator.SetBool("IsWalk", aiState != AIState1.Idle);
+        animator.SetBool("IsWalk", aiState == AIState1.Walk);
+        animator.SetBool("IsRun", aiState == AIState1.Attack);
 
         switch (aiState)
         {
@@ -75,8 +89,17 @@ public class Enemy : MonoBehaviour// , IDamagable
         }
     }
 
+    bool IsAgentReady(NavMeshAgent a)
+    {
+        return a != null
+            && a.isActiveAndEnabled
+            && a.isOnNavMesh; // 핵심: NavMesh 위 여부
+    }
+
     private void SetState(AIState1 state)
     {
+        if (!IsAgentReady(agent)) return;
+
         aiState = state;
 
         switch (aiState)
@@ -95,7 +118,6 @@ public class Enemy : MonoBehaviour// , IDamagable
                 break;
         }
 
-        animator.speed = agent.speed / walkSpeed;
     }
 
     void PassiveUpdate()
@@ -114,16 +136,22 @@ public class Enemy : MonoBehaviour// , IDamagable
 
     void AttackingUpdate()
     {
-        if (playerDistance < attackDistance && IsPlayerInFieldOfView())
+        if (Time.time - lastAttackTime > attackRate)
         {
-            agent.isStopped = true;
-            if (Time.time - lastAttackTime > attackRate)
+            lastAttackTime = Time.time;
+
+            var cm = CharacterManager.Instance;
+            var player = cm != null ? cm.Player : null;
+            var ctrl = player != null ? player.controller : null;
+
+            var target = ctrl != null ? ctrl.GetComponent<IDamageable>() : null;
+            if (target != null)
             {
-                lastAttackTime = Time.time;
-                CharacterManager.Instance.Player.controller.GetComponent<IDamagable>()/*. TakePhysicalDamage(damage) */;
-                animator.speed = 1;
-                animator.SetTrigger("Attack");
+                target.TakePhysicalDamage(damage);  // 플레이어에게 데미지 적용
             }
+
+            animator.speed = 1;
+            animator.SetTrigger("Attack");
         }
         else
         {
@@ -133,10 +161,12 @@ public class Enemy : MonoBehaviour// , IDamagable
                 NavMeshPath path = new NavMeshPath();
                 if (agent.CalculatePath(CharacterManager.Instance.Player.transform.position, path))
                 {
+                    if (!IsAgentReady(agent) || agent.pathPending) return;
                     agent.SetDestination(CharacterManager.Instance.Player.transform.position);
                 }
                 else
                 {
+                    if (!IsAgentReady(agent) || agent.pathPending) return;
                     agent.SetDestination(transform.position);
                     agent.isStopped = true;
                     SetState(AIState1.Walk);
@@ -144,6 +174,7 @@ public class Enemy : MonoBehaviour// , IDamagable
             }
             else
             {
+                if (!IsAgentReady(agent) || agent.pathPending) return;
                 agent.SetDestination(transform.position);
                 agent.isStopped = true;
                 SetState(AIState1.Walk);

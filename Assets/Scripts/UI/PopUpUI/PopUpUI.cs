@@ -27,7 +27,7 @@ public class PopUpUI : BaseUI
     //¹öÆ°À¸·Îµµ ²ô°Å³ª esc·Îµµ ²ô±â
     void DisableUI()
     {
-        Debug.Log("²ô±â ½Ãµµ");
+        Debug.Log("²ô±â ½Ãµµ"+transform.name);
         Debug.Log(popUpUIStack.Count);
         if(popUpUIStack.Count > 0)
         {

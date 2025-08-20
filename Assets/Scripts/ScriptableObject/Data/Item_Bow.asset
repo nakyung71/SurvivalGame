@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f03a89fc6238a49936e878121ebca7, type: 3}
   m_Name: Item_Bow
   m_EditorClassIdentifier: 
-  displayName: 
-  description: 
-  type: 0
+  displayName: "\uD65C"
+  description: "\uD654\uC0B4\uC744 \uBC1C\uC0AC\uD55C\uB2E4"
+  type: 1
   icon: {fileID: 0}
-  dropPrefab: {fileID: 0}
+  dropPrefab: {fileID: 1677214014089929619, guid: 9564b37633b90fc41af46bfb626ee6b5, type: 3}
   canStack: 0
   maxStackAmount: 0
   consumables: []
+  equipPrefab: {fileID: 0}

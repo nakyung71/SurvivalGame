@@ -8,9 +8,13 @@ public class Player : MonoBehaviour
     public PlayerController controller;
     public PlayerCondition condition;
 
-    public ItemData ItemData;
+    public ItemData itemData;
     public Action addItem;
+    
+    //public Equipment equip;
 
+
+    public Transform dropPosition;
     private void Awake()
     {
         CharacterManager.Instance.Player = this;

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0b348aab214a760418332a9d95c44377
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Kitty: {fileID: 6397291155531275063, guid: b8f9b58adfe4cb34ab1cfa65bd988f4e, type: 3}
+  - Penguin: {fileID: 1527881004230699645, guid: fb2b6dcdde9fd29458fab0926b34c0eb, type: 3}
+  - Chicken: {fileID: 8073443194988779917, guid: d5cf8ce4b5742e84f83eda73691ba0ab, type: 3}
+  - Deer: {fileID: 7402009758359158996, guid: c0b6729f6b5df8b49b576b7dbbb3b7d6, type: 3}
+  - Dog: {fileID: 2629182449500102118, guid: 0325af2d0783f2c4d8406272966a8abc, type: 3}
+  - Tiger: {fileID: 5883155896844355918, guid: 2df958172d2cd044c957cb05b0d431b4, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

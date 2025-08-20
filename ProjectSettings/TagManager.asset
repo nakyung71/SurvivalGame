@@ -13,11 +13,11 @@ TagManager:
   - UI
   - Player
   - Interactable
-  - 
+  - Equip
   - NPC
   - Enemy
-  - 
-  - 
+  - HotPlace
+  - ColdPlace
   - 
   - 
   - 

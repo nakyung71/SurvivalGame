@@ -10,15 +10,21 @@ public class Condition : MonoBehaviour
     public float maxValue;
     public float passiveValue;
     public Image uiBar;
+    RectTransform rectTransform;
+    Vector2 barVector;
     void Start()
     {
         curValue = startValue;
+        rectTransform=uiBar.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        barVector = rectTransform.sizeDelta;
+        barVector.x = 400f*(curValue / maxValue);
+        rectTransform.sizeDelta = barVector;
+        //uiBar.fillAmount = GetPercentage();
     }
 
     float GetPercentage()
@@ -34,5 +40,10 @@ public class Condition : MonoBehaviour
     public void TakeDamage(float value)
     {
         curValue = Mathf.Max(curValue - value, 0);
+    }
+
+    public void TempDamage(float value)
+    {
+        curValue = Mathf.Max(curValue - value * 1.5f , 0);
     }
 }
