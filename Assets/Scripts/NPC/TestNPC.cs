@@ -11,6 +11,7 @@ public class TestNPC : BaseNPC,ITalkable,IInteractable,IQuest  //모든 NPC는 Base
 
     public void AcceptQuest()
     {
+        Debug.Log($"{this.name}의 퀘스트 수락");
         //퀘스트에 필요한 메서드나 내용들 여기 적으세요
         //예를 들어 퀘스트 시작 문구가 뜬다던가
         // IQuest 상속 시 필수 구현(인터페이스 상속 안하면 작동x)
