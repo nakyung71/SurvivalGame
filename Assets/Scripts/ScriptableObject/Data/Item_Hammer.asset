@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f03a89fc6238a49936e878121ebca7, type: 3}
   m_Name: Item_Hammer
   m_EditorClassIdentifier: 
-  displayName: 
-  description: 
+  displayName: "\uB9DD\uCE58"
+  description: "\uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC785\uD78C\uB2E4"
   type: 0
   icon: {fileID: 0}
-  dropPrefab: {fileID: 0}
+  dropPrefab: {fileID: 7301447797967908040, guid: 4d78ec08b81f1754b90ec78180ad1862, type: 3}
   canStack: 0
   maxStackAmount: 0
   consumables: []
+  equipPrefab: {fileID: 0}
