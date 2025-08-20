@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public Action inventory;
     private Rigidbody rb;
     private Animator animator;
+    private PlayerCondition playerCondition;
     bool movingbool;
     bool backMovingbool;
     bool runbool;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        playerCondition = GetComponent<PlayerCondition>();
     }
 
     private void Start()
@@ -124,6 +126,10 @@ public class PlayerController : MonoBehaviour
             runSpeed = 1.5f; 
             runbool = true;
             animator.SetBool("isRun",runbool);
+            if(playerCondition.gameUI.stamina.curValue <= 0)
+            {
+                runbool = false;
+            }
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
@@ -135,11 +141,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGrounded())
+        if (context.phase == InputActionPhase.Started && IsGrounded() && playerCondition.gameUI.stamina.curValue>=10)
         {
             rb.AddForce(Vector2.up * JumpPower, ForceMode.Impulse);
             animator.ResetTrigger("isJump");
             animator.SetTrigger("isJump");
+            playerCondition.gameUI.stamina.curValue -= 10;
         }
     }
 

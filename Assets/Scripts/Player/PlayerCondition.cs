@@ -12,7 +12,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public GameUI gameUI;
     private Animator animator;
-    private PlayerInput PlayerInput;
+    private PlayerInput playerInput;
     public LayerMask coldTempLayerMask;
     public LayerMask hotTempLayerMask;
 
@@ -32,18 +32,22 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        PlayerInput = GetComponent<PlayerInput>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void Update()
     {
         hunger.TakeDamage(hunger.passiveValue * Time.deltaTime);
         thirst.TakeDamage(thirst.passiveValue * Time.deltaTime);
-        stamina.Add(stamina.passiveValue * Time.deltaTime);
 
         if (hunger.curValue <= 0f)
         {
             health.TakeDamage(noHungerHealthDecay * Time.deltaTime);
+        }
+
+        if (temperature.curValue >= temperature.maxValue)
+        {
+            thirst.TempDamage(thirst.passiveValue * Time.deltaTime);
         }
 
         if (thirst.curValue <= 0f)
@@ -55,16 +59,12 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         {
             health.TakeDamage(temperatureHealthDecay * Time.deltaTime);
         }
-        if(temperature.curValue >= temperature.maxValue)
-        {
-            thirst.passiveValue *= 1.5f;
-        }
 
         if (health.curValue <= 0f && !isDead)
         {
             Die();
             isDead = true;//죽었을 때 애니메이터 한 번 켜기 위해
-            PlayerInput.enabled = false;//죽었을 때 안 움직이게 하기 위해 재시작시 true로 만들어야 함
+            playerInput.enabled = false;//죽었을 때 안 움직이게 하기 위해 재시작시 true로 만들어야 함
         }
 
         if(IsColdPlace())
@@ -77,6 +77,16 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         {
             Debug.Log("뜨거운 곳");
             temperature.Add(temperature.passiveValue * Time.deltaTime);
+        }
+
+        if (animator.GetBool("isRun") == false)
+        {
+            stamina.Add(stamina.passiveValue * Time.deltaTime);
+        }
+
+        if(animator.GetBool("isRun"))
+        {
+            stamina.TakeDamage(stamina.passiveValue * Time.deltaTime);
         }
     }
 
@@ -93,11 +103,6 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public void Drink(float amount)
     {
         thirst.Add(amount);
-    }
-
-    public void WarmUp(float amount)
-    {
-        temperature.Add(amount);
     }
 
     public void Die()
