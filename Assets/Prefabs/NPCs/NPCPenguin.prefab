@@ -217,6 +217,7 @@ MonoBehaviour:
   minWanderWaitTime: 1
   maxWanderWaitTime: 2
   fieldOfView: 120
+  data: {fileID: 0}
 --- !u!95 &6788066205645133815
 Animator:
   serializedVersion: 5

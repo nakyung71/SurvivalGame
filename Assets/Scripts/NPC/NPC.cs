@@ -10,7 +10,7 @@ public enum AIState
     Run
 }
 
-public class NPC : MonoBehaviour, IDamageable
+public class NPC : MonoBehaviour, IDamageable, ITalkable, IInteractable, IQuest
 {
     [Header("Stats")]
     public int health;
@@ -38,6 +38,9 @@ public class NPC : MonoBehaviour, IDamageable
 
     private int safeDistance = 7;
 
+    [SerializeField] DialogueData data;
+    public DialogueData DialogueData => data;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -47,14 +50,24 @@ public class NPC : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        StartCoroutine(InitAfterPlaced());
+    }
+
+    IEnumerator InitAfterPlaced()
+    {
+        yield return new WaitUntil(() => IsAgentReady(agent));
         SetState(AIState.Walk);
     }
 
     private void Update()
     {
+        if (!IsAgentReady(agent))
+            return; // 아직 NavMesh에 안 올라갔으면 아무것도 하지 않음
+
         playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position);
 
-        animator.SetBool("IsWalk", aiState != AIState.Idle);
+        animator.SetBool("IsWalk", aiState == AIState.Walk);
+        animator.SetBool("IsRun", aiState == AIState.Run);
 
         switch (aiState)
         {
@@ -68,6 +81,13 @@ public class NPC : MonoBehaviour, IDamageable
                 RunUpdate();
                 break;
         }
+    }
+
+    bool IsAgentReady(NavMeshAgent a)
+    {
+        return a != null
+            && a.isActiveAndEnabled
+            && a.isOnNavMesh; // 핵심: NavMesh 위 여부
     }
 
     private void SetState(AIState state)
@@ -90,7 +110,6 @@ public class NPC : MonoBehaviour, IDamageable
                 break;
         }
 
-        animator.speed = agent.speed / walkSpeed;
     }
 
     void PassiveUpdate()
@@ -103,7 +122,7 @@ public class NPC : MonoBehaviour, IDamageable
 
         if (playerDistance < detectDistance)
         {
-            SetState(AIState.Run);
+            SetState(AIState.Walk);
         }
     }
 
@@ -202,5 +221,35 @@ public class NPC : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.1f);
         for (int x = 0; x < meshRenderers.Length; x++)
             meshRenderers[x].material.color = Color.white;
+    }
+
+    public void AcceptQuest()
+    {
+        Debug.Log("퀘스트");
+    }
+
+    public string GetInteractPrompt()
+    {
+        string prefabName = gameObject.name;
+
+        switch (prefabName)
+        {
+            case "NPCKitty":
+                return "고양이";
+            case "NPCPenguin":
+                return "펭귄";
+            default:
+                return "알 수 없는 생물";
+        }
+    }
+
+    public void OnInteract()
+    {
+        DialogueManager.Instance.SetTalk(data, this);
+    }
+
+    public void Talk()
+    {
+        DialogueManager.Instance.SetTalk(data);
     }
 }
