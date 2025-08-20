@@ -10,6 +10,7 @@ public interface ITalkable
 {
     DialogueData DialogueData { get; }
     public void Talk();
+    int TalkTimes {  get; }
 }
 
 public interface IQuest
@@ -18,7 +19,9 @@ public interface IQuest
     public void AcceptQuest();
     //작동은 이 인터페이스 상속받은 NPC가 하게하기
     //내용도 그냥 다 NPC에 넣기
+    public void CheckQuestCondition();
 
+    bool IsQuestAccepted { get; }
 
 }
 
@@ -129,12 +132,22 @@ public class DialogueManager : MonoBehaviour
 
     void TestDialogueYes()
     {
+        IQuest iquest = npc.GetComponentInChildren<IQuest>();
         
-        npc.GetComponentInChildren<IQuest>()?.AcceptQuest();
-        if (npc.GetComponentInChildren<IQuest>() == null)
+        if (iquest!=null)
         {
-            Debug.Log("컴포넌트 못찾음");
+            Debug.Log("초기 조건 만족");
+            
+            if(iquest.IsQuestAccepted==false)
+            {
+                iquest.AcceptQuest();
+            }
+            else
+            {
+                iquest.CheckQuestCondition();
+            }
         }
+        
         MoveToNextDialogue();
         CloseDialogue() ;
         

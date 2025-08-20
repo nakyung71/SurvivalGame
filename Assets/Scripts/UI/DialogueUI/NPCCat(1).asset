@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TalkerName: Cat
   dialogueID: 1.1
-  dialogueLines: []
-  choiceButtonText: []
-  choiceExist: 0
+  dialogueLines:
+  - "\uC88B\uC544 \uADF8\uB7FC \uD55C\uBC88 \uB0B4\uAC00 \uC694\uCCAD\uD588\uB358
+    \uC7AC\uB8CC\uB97C \uAC00\uC838\uC654\uB294\uC9C0 \uCCB4\uD06C\uD574\uBCFC\uAE4C?"
+  choiceButtonText:
+  - "\uAC74\uB124\uC900\uB2E4"
+  - "\uCDE8\uC18C\uD55C\uB2E4"
+  choiceExist: 1
   nextDialogueExist: 0
   nextDialogueID_Button1: 0
   nextDialogueID_Button2: 0
