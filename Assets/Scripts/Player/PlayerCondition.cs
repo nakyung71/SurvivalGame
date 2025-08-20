@@ -13,6 +13,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public GameUI gameUI;
     private Animator animator;
     private PlayerInput playerInput;
+    private PlayerController playerController;
     public LayerMask coldTempLayerMask;
     public LayerMask hotTempLayerMask;
 
@@ -33,6 +34,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     {
         animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
+        playerController = GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -69,14 +71,20 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
         if(IsColdPlace())
         {
-            Debug.Log("차가운 곳");
             temperature.TakeDamage(temperature.passiveValue * Time.deltaTime);
         }
 
         if(IsHotPlace())
         {
-            Debug.Log("뜨거운 곳");
             temperature.Add(temperature.passiveValue * Time.deltaTime);
+        }
+
+        
+        if (stamina.curValue <= 1)
+        {
+                playerController.runSpeed = 1;
+                playerController.runbool = false;
+                animator.SetBool("isRun", playerController.runbool);            
         }
 
         if (animator.GetBool("isRun") == false)
@@ -107,7 +115,6 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Die()
     {
-        Debug.Log("플레이어가 죽었다.");
         animator.SetTrigger("isDie");
     }
 
