@@ -50,16 +50,24 @@ public class NPC : MonoBehaviour, IDamageable, ITalkable, IInteractable, IQuest
 
     private void Start()
     {
+        StartCoroutine(InitAfterPlaced());
+    }
+
+    IEnumerator InitAfterPlaced()
+    {
+        yield return new WaitUntil(() => IsAgentReady(agent));
         SetState(AIState.Walk);
     }
 
     private void Update()
     {
+        if (!IsAgentReady(agent))
+            return; // 아직 NavMesh에 안 올라갔으면 아무것도 하지 않음
+
         playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position);
 
         animator.SetBool("IsWalk", aiState == AIState.Walk);
         animator.SetBool("IsRun", aiState == AIState.Run);
-        animator.SetFloat("Speed", agent.velocity.magnitude);
 
         switch (aiState)
         {
@@ -73,6 +81,13 @@ public class NPC : MonoBehaviour, IDamageable, ITalkable, IInteractable, IQuest
                 RunUpdate();
                 break;
         }
+    }
+
+    bool IsAgentReady(NavMeshAgent a)
+    {
+        return a != null
+            && a.isActiveAndEnabled
+            && a.isOnNavMesh; // 핵심: NavMesh 위 여부
     }
 
     private void SetState(AIState state)
@@ -215,7 +230,17 @@ public class NPC : MonoBehaviour, IDamageable, ITalkable, IInteractable, IQuest
 
     public string GetInteractPrompt()
     {
-        return "큐브";
+        string prefabName = gameObject.name;
+
+        switch (prefabName)
+        {
+            case "NPCKitty":
+                return "고양이";
+            case "NPCPenguin":
+                return "펭귄";
+            default:
+                return "알 수 없는 생물";
+        }
     }
 
     public void OnInteract()
