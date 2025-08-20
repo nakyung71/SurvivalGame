@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6447682526283861451}
   - component: {fileID: 1821955886874711850}
-  m_Layer: 11
+  - component: {fileID: 7399663232736360880}
+  m_Layer: 13
   m_Name: Resource_Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +55,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.52, y: 1.84, z: 0.61}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &7399663232736360880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3148928338679383708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b9a5ede2b90f34d8d90a9dd1420164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToGive: {fileID: 0}
+  quantityPerHit: 1
+  capacity: 0
 --- !u!1 &6252151888192544450
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +81,7 @@ GameObject:
   - component: {fileID: 544495613169715260}
   - component: {fileID: 7086253024123881490}
   - component: {fileID: 5184910853148167321}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Tree1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
