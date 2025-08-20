@@ -250,7 +250,19 @@ MonoBehaviour:
     m_ActionId: 3b080a4c-2d97-4684-ab24-b1395007e7ed
     m_ActionName: Player/Farming[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 478157130}
+        m_TargetAssemblyTypeName: Equipment, Assembly-CSharp
+        m_MethodName: OnAttackInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f7d2d8a7-d894-4e92-9e4e-44b6edb2b0c7
     m_ActionName: Player/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -297,6 +309,7 @@ MonoBehaviour:
   maxXLook: 45
   lookSensitivity: 0.1
   canLook: 1
+  runbool: 0
 --- !u!114 &478157123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +417,20 @@ MonoBehaviour:
   noHungerHealthDecay: 3
   noThirstHealthDecay: 3
   temperatureHealthDecay: 3
+--- !u!114 &478157130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478157118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd79cc3f483466a46bf27e1244247c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curEquip: {fileID: 0}
+  equipParent: {fileID: 0}
 --- !u!1001 &720026901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -652,6 +679,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
+      propertyPath: m_Quality
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1711505207429034123, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -802,6 +833,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 478157128}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 478157130}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 478157124}
