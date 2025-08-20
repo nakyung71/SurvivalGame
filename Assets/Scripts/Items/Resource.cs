@@ -13,11 +13,28 @@ public class Resource : MonoBehaviour
     private void Awake()
     {
         spawner = GetComponentInParent<ResourceSpawner>();
+
+        // (추가) 콜라이더 확인 로그
+        if (GetComponent<Collider>() == null && GetComponentInChildren<Collider>() == null)
+        {
+            Debug.LogWarning($"{name}: 콜라이더가 없음 → 레이캐스트로 맞출 수 없음");
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (capacity <= 0) capacity = maxCapacity;
     }
 
     public void Gather(Vector3 hitPoint, Vector3 hitNormal)
     {
-        if (capacity <= 0) return; // (추가) 고갈시 즉시 종료
+        if (capacity <= 0)
+        {
+            Debug.Log($"{name}: 이미 고갈된 자원, 채집 불가");
+            return;
+        }
+
+        Debug.Log($"{name}: 채집 시도 (현재 용량={capacity}, 1회 채집량={quantityPerHit})");
 
         for (int i = 0; i < quantityPerHit; i++)
         {
@@ -31,15 +48,26 @@ public class Resource : MonoBehaviour
                 Instantiate(itemToGive.dropPrefab,
                             hitPoint + Vector3.up,
                             Quaternion.LookRotation(hitNormal, Vector3.up));
+
+                Debug.Log($"{name}: {itemToGive.name} 아이템 드랍, 남은 용량={capacity}");
+            }
+            else
+            {
+                Debug.LogWarning($"{name}: itemToGive 또는 dropPrefab이 지정되지 않음 → 아이템 생성 실패");
             }
         }
 
         if (capacity <= 0 && spawner != null)
         {
+            Debug.Log($"{name}: 자원 고갈됨, 리스폰 요청");
             spawner.StartRespawn(this); // (추가) Spawner에 리스폰 요청
             gameObject.SetActive(false); // (변경) 파괴 대신 비활성화
         }
     }
 
-    public void ResetCapacity() => capacity = maxCapacity; // (추가)
+    public void ResetCapacity()
+    {
+        capacity = maxCapacity; // (추가)
+        Debug.Log($"{name}: 용량이 {capacity} 으로 초기화됨");
+    }
 }
