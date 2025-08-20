@@ -107,7 +107,7 @@ public class NPC : MonoBehaviour, IDamageable, ITalkable, IInteractable, IQuest
 
         if (playerDistance < detectDistance)
         {
-            SetState(AIState.Run);
+            SetState(AIState.Walk);
         }
     }
 
