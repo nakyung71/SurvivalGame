@@ -44,6 +44,6 @@ public class Condition : MonoBehaviour
 
     public void TempDamage(float value)
     {
-        curValue = Mathf.Max(curValue - value, 0);
+        curValue = Mathf.Max(curValue - value * 1.5f , 0);
     }
 }
