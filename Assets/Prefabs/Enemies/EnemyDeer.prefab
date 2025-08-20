@@ -1021,7 +1021,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7922649801668778606}
   - component: {fileID: -6535608190728990062}
-  - component: {fileID: 108600861709003617}
   - component: {fileID: -8372857919328077788}
   - component: {fileID: -8513374530136382237}
   - component: {fileID: -2202980568815825929}
@@ -1070,33 +1069,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6397479, y: 1.5387434, z: 1.1060479}
   m_Center: {x: 0.03937313, y: 0.8510342, z: 0.10112783}
---- !u!54 &108600861709003617
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7402009758359158996}
-  serializedVersion: 4
-  m_Mass: 3
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!195 &-8372857919328077788
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1105,7 +1077,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7402009758359158996}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8

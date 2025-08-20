@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: -3074524234174597894}
   - component: {fileID: 6788066205645133815}
   - component: {fileID: -4128921250370929193}
-  - component: {fileID: 7464601026774964188}
   - component: {fileID: 2343508503379610801}
   m_Layer: 9
   m_Name: NPCPenguin
@@ -211,6 +210,7 @@ MonoBehaviour:
   health: 110
   walkSpeed: 0.5
   runSpeed: 2
+  dropOnDeath: []
   detectDistance: 5
   minWanderDistance: 5
   maxWanderDistance: 10
@@ -259,33 +259,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5087063, y: 1.3345846, z: 0.64781415}
   m_Center: {x: -0.008888632, y: 0.6595194, z: -0.16436899}
---- !u!54 &7464601026774964188
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527881004230699645}
-  serializedVersion: 4
-  m_Mass: 1.5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!195 &2343508503379610801
 NavMeshAgent:
   m_ObjectHideFlags: 0
