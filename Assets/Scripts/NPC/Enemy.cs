@@ -59,7 +59,9 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position);
 
-        animator.SetBool("IsWalk", aiState != AIState1.Idle);
+        animator.SetBool("IsWalk", aiState == AIState1.Walk);
+        animator.SetBool("IsRun", aiState == AIState1.Attack);
+        animator.SetFloat("Speed", agent.velocity.magnitude);
 
         switch (aiState)
         {
@@ -95,7 +97,6 @@ public class Enemy : MonoBehaviour, IDamageable
                 break;
         }
 
-        animator.speed = agent.speed / walkSpeed;
     }
 
     void PassiveUpdate()

@@ -10,7 +10,7 @@ public enum AIState
     Run
 }
 
-public class NPC : MonoBehaviour, IDamageable
+public class NPC : MonoBehaviour, IDamageable, ITalkable, IInteractable, IQuest
 {
     [Header("Stats")]
     public int health;
@@ -38,6 +38,9 @@ public class NPC : MonoBehaviour, IDamageable
 
     private int safeDistance = 7;
 
+    [SerializeField] DialogueData data;
+    public DialogueData DialogueData => data;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -54,7 +57,9 @@ public class NPC : MonoBehaviour, IDamageable
     {
         playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position);
 
-        animator.SetBool("IsWalk", aiState != AIState.Idle);
+        animator.SetBool("IsWalk", aiState == AIState.Walk);
+        animator.SetBool("IsRun", aiState == AIState.Run);
+        animator.SetFloat("Speed", agent.velocity.magnitude);
 
         switch (aiState)
         {
@@ -90,7 +95,6 @@ public class NPC : MonoBehaviour, IDamageable
                 break;
         }
 
-        animator.speed = agent.speed / walkSpeed;
     }
 
     void PassiveUpdate()
@@ -202,5 +206,25 @@ public class NPC : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.1f);
         for (int x = 0; x < meshRenderers.Length; x++)
             meshRenderers[x].material.color = Color.white;
+    }
+
+    public void AcceptQuest()
+    {
+        Debug.Log("Äù½ºÆ®");
+    }
+
+    public string GetInteractPrompt()
+    {
+        return "Å¥ºê";
+    }
+
+    public void OnInteract()
+    {
+        DialogueManager.Instance.SetTalk(data, this);
+    }
+
+    public void Talk()
+    {
+        DialogueManager.Instance.SetTalk(data);
     }
 }
