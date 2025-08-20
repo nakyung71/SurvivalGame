@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public interface ITalkable
 {
-    DialogueData DialogueData { get; }
+    
     public void Talk();
     int TalkTimes {  get; }
 }

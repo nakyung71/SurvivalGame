@@ -399,6 +399,18 @@ MonoBehaviour:
   noHungerHealthDecay: 0
   noThirstHealthDecay: 0
   temperatureHealthDecay: 0
+--- !u!114 &502433743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502433725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c33499ca22f20941a31729c45b599ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519804341 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8589214392070710001, guid: be534758ac2af7948b4c114566cace5b, type: 3}
@@ -514,6 +526,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2960288497265914252, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 502433734}
+    - targetCorrespondingSourceObject: {fileID: 2960288497265914252, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 502433743}
   m_SourcePrefab: {fileID: 100100000, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
 --- !u!1 &557879658 stripped
 GameObject:
@@ -2282,6 +2297,30 @@ PrefabInstance:
       propertyPath: defaultData
       value: 
       objectReference: {fileID: 11400000, guid: b19a0760eb19e604d9ce87a7d14f5a55, type: 2}
+    - target: {fileID: 8229254579207624039, guid: eea8d205c87496c41aec00f4e7594f44, type: 3}
+      propertyPath: questItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d0c62cabbedfe648b9ff9f7f2e5b5fd, type: 2}
+    - target: {fileID: 8229254579207624039, guid: eea8d205c87496c41aec00f4e7594f44, type: 3}
+      propertyPath: successReward
+      value: 
+      objectReference: {fileID: 500970586778889598, guid: e67f487b8af8286409645eacc5de7564, type: 3}
+    - target: {fileID: 8229254579207624039, guid: eea8d205c87496c41aec00f4e7594f44, type: 3}
+      propertyPath: dialogueDatas.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229254579207624039, guid: eea8d205c87496c41aec00f4e7594f44, type: 3}
+      propertyPath: dialogueDatas.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0f6d569a331be9f469b27c4dffe95efe, type: 2}
+    - target: {fileID: 8229254579207624039, guid: eea8d205c87496c41aec00f4e7594f44, type: 3}
+      propertyPath: dialogueDatas.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b19a0760eb19e604d9ce87a7d14f5a55, type: 2}
+    - target: {fileID: 8229254579207624039, guid: eea8d205c87496c41aec00f4e7594f44, type: 3}
+      propertyPath: dialogueDatas.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a435c713c9246e4081a10c32a185883, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

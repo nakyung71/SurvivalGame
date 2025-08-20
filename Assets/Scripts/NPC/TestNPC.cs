@@ -5,16 +5,25 @@ using UnityEngine.EventSystems;
 
 public class TestNPC : BaseNPC,ITalkable,IInteractable,IQuest  //모든 NPC는 BaseNPC를 상속받습니다.
 {
-    [SerializeField] DialogueData firstData;  //이 부분과
-    [SerializeField] DialogueData defaultData;
-    public DialogueData DialogueData => firstData;  //이 부분은 ITalkable 인터페이스 상속 시 필수 부분입니다.
+    [SerializeField] DialogueData[] dialogueDatas; //이 부분과
+    
+      //이 부분은 ITalkable 인터페이스 상속 시 필수 부분입니다.
 
     public int TalkTimes { get; private set; } = 0;
 
     public bool IsQuestAccepted { get; private set; } = false;
 
+    private int goalQuantity = 20;
+
     //꼭 인스펙터 창에 대화 SO를 넣어야 진행이 됩니다.
 
+    [SerializeField] ItemData questItemData;
+    [SerializeField] GameObject successReward;
+
+
+    
+
+    
 
     public void AcceptQuest()
     {
@@ -33,7 +42,13 @@ public class TestNPC : BaseNPC,ITalkable,IInteractable,IQuest  //모든 NPC는 Base
 
     public void CheckQuestCondition()
     {
-        
+        int itemquantity=CharacterManager.Instance.Player.inventory.CheckItemQuantity(questItemData);
+        if(itemquantity>=goalQuantity)
+        {
+            CharacterManager.Instance.Player.inventory.ChangeItemQuantity(-goalQuantity);
+            Instantiate(successReward);
+            DialogueManager.Instance.SetTalk(dialogueDatas[2], this);
+        }
     }
 
     public string GetInteractPrompt()
@@ -54,14 +69,14 @@ public class TestNPC : BaseNPC,ITalkable,IInteractable,IQuest  //모든 NPC는 Base
 
     public void Talk()
     {
-        if( TalkTimes==0 )
+        if( IsQuestAccepted==false )
         {
-            DialogueManager.Instance.SetTalk(firstData, this);
+            DialogueManager.Instance.SetTalk(dialogueDatas[0], this);
             TalkTimes++;
         }
         else
         {
-            DialogueManager.Instance.SetTalk(defaultData, this);
+            DialogueManager.Instance.SetTalk(dialogueDatas[1], this);
         }
         
 
