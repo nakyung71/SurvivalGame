@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
     bool movingbool;
     bool backMovingbool;
     bool runbool;
-    bool backrunbool;
 
     private void Awake()
     {
@@ -172,7 +171,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ToggleCursor()
+    public void ToggleCursor()
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;

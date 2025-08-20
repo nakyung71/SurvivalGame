@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public interface IDamagable
 {
@@ -10,6 +11,8 @@ public interface IDamagable
 public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public GameUI gameUI;
+    private Animator animator;
+    private PlayerInput PlayerInput;
 
     Condition health { get { return gameUI.health; } }
     Condition hunger { get { return gameUI.hunger; } }
@@ -22,7 +25,14 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public float noTemperatureHealthDecay;
     public event Action onTakeDamage;
 
-   
+    private bool isDead = false;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        PlayerInput = GetComponent<PlayerInput>();
+    }
+
     private void Update()
     {
         hunger.TakeDamage(hunger.passiveValue * Time.deltaTime);
@@ -30,24 +40,26 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         temperature.TakeDamage(temperature.passiveValue * Time.deltaTime);
         stamina.Add(stamina.passiveValue * Time.deltaTime);
 
-        if (hunger.curValue < 0f)
+        if (hunger.curValue <= 0f)
         {
             health.TakeDamage(noHungerHealthDecay * Time.deltaTime);
         }
 
-        if (thirst.curValue < 0f)
+        if (thirst.curValue <= 0f)
         {
-            thirst.TakeDamage(noThirstHealthDecay * Time.deltaTime);
+            health.TakeDamage(noThirstHealthDecay * Time.deltaTime);
         }
 
-        if (temperature.curValue < 0f)
+        if (temperature.curValue <= 0f)
         {
-            temperature.TakeDamage(noTemperatureHealthDecay * Time.deltaTime);
+            health.TakeDamage(noTemperatureHealthDecay * Time.deltaTime);
         }
 
-        if (health.curValue < 0f)
+        if (health.curValue <= 0f && !isDead)
         {
             Die();
+            isDead = true;
+            PlayerInput.enabled = false;
         }
     }
 
@@ -74,6 +86,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public void Die()
     {
         Debug.Log("플레이어가 죽었다.");
+        animator.SetTrigger("isDie");
     }
 
     public void TakePhsicalDamage(int damage)
