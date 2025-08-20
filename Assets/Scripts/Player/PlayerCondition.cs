@@ -13,6 +13,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public GameUI gameUI;
     private Animator animator;
     private PlayerInput PlayerInput;
+    public LayerMask coldTempLayerMask;
+    public LayerMask hotTempLayerMask;
 
     Condition health { get { return gameUI.health; } }
     Condition hunger { get { return gameUI.hunger; } }
@@ -22,7 +24,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public float noHungerHealthDecay;
     public float noThirstHealthDecay;
-    public float noTemperatureHealthDecay;
+    public float temperatureHealthDecay;
     public event Action onTakeDamage;
 
     private bool isDead = false;
@@ -37,7 +39,6 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     {
         hunger.TakeDamage(hunger.passiveValue * Time.deltaTime);
         thirst.TakeDamage(thirst.passiveValue * Time.deltaTime);
-        temperature.TakeDamage(temperature.passiveValue * Time.deltaTime);
         stamina.Add(stamina.passiveValue * Time.deltaTime);
 
         if (hunger.curValue <= 0f)
@@ -52,14 +53,30 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
         if (temperature.curValue <= 0f)
         {
-            health.TakeDamage(noTemperatureHealthDecay * Time.deltaTime);
+            health.TakeDamage(temperatureHealthDecay * Time.deltaTime);
+        }
+        if(temperature.curValue >= temperature.maxValue)
+        {
+            thirst.passiveValue *= 1.5f;
         }
 
         if (health.curValue <= 0f && !isDead)
         {
             Die();
-            isDead = true;
-            PlayerInput.enabled = false;
+            isDead = true;//죽었을 때 애니메이터 한 번 켜기 위해
+            PlayerInput.enabled = false;//죽었을 때 안 움직이게 하기 위해 재시작시 true로 만들어야 함
+        }
+
+        if(IsColdPlace())
+        {
+            Debug.Log("차가운 곳");
+            temperature.TakeDamage(temperature.passiveValue * Time.deltaTime);
+        }
+
+        if(IsHotPlace())
+        {
+            Debug.Log("뜨거운 곳");
+            temperature.Add(temperature.passiveValue * Time.deltaTime);
         }
     }
 
@@ -93,5 +110,43 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     {
         health.TakeDamage(damage);
         onTakeDamage?.Invoke();
+    }
+
+    bool IsColdPlace()
+    {
+        Ray[] rays = new Ray[4]
+        {
+            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down)
+        };
+        for (int i = 0; i < rays.Length; i++)
+        {
+            if (Physics.Raycast(rays[i], 0.3f, coldTempLayerMask))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool IsHotPlace()
+    {
+        Ray[] rays = new Ray[4]
+        {
+            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down)
+        };
+        for (int i = 0; i < rays.Length; i++)
+        {
+            if (Physics.Raycast(rays[i], 0.3f, hotTempLayerMask))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
