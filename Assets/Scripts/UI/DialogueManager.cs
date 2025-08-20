@@ -122,7 +122,10 @@ public class DialogueManager : MonoBehaviour
         CharacterManager.Instance.Player.controller.ToggleCursor();
     }
 
-
+    void MoveToNextDialogue()
+    {
+        //딕셔너리에서 다음 데이터 찾음
+    }
 
     void TestDialogueYes()
     {
@@ -132,6 +135,7 @@ public class DialogueManager : MonoBehaviour
         {
             Debug.Log("컴포넌트 못찾음");
         }
+        MoveToNextDialogue();
         CloseDialogue() ;
         
     }

@@ -19,6 +19,7 @@ public class DialogueData : ScriptableObject
 
     public bool nextDialogueExist;
 
-    public float nextDialogueID;
+    public float nextDialogueID_Button1;
+    public float nextDialogueID_Button2;
 
 }
