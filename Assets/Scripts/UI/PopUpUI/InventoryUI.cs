@@ -86,7 +86,7 @@ public class InventoryUI : PopUpUI
         selectedItemDescription.text = string.Empty;
         selectedItemStat.text = string.Empty;
         selectedItemValue.text = string.Empty;
-        selectedItemImage.sprite = null; //추가
+        //selectedItemImage.sprite = null; //추가
 
         useButton.SetActive(false);
         equipButton.SetActive(false);
@@ -200,7 +200,7 @@ public class InventoryUI : PopUpUI
         selectedItemDescription.text = selectedItem.description;
         selectedItemStat.text = string.Empty;
         selectedItemValue.text = string.Empty;
-        selectedItemImage.sprite= selectedItem.icon; //추가
+        //selectedItemImage.sprite= selectedItem.icon; //추가
         for (int i = 0; i < selectedItem.consumables.Length; i++)
         {
             selectedItemStat.text += selectedItem.consumables[i].type.ToString() + "\n";
