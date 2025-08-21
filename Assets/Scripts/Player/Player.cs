@@ -22,5 +22,6 @@ public class Player : MonoBehaviour
         controller = GetComponent<PlayerController>();
         condition = GetComponent<PlayerCondition>();
         inventory = GetComponent<PlayerInventory>();
+        equip = GetComponent<Equipment>();
     }
 }
