@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6147682791671093253}
   - component: {fileID: 2074388318910941482}
   - component: {fileID: 4262635333529620505}
+  - component: {fileID: 2579510121619593802}
   m_Layer: 8
   m_Name: Equip_Ax
   m_TagString: Untagged
@@ -72,6 +73,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2579510121619593802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059661886983882948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90590cec58d879f478a98c68aef93cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  swingClip: {fileID: 8300000, guid: 81d6c0eb0dc0a3743906c80ecb65f04c, type: 3}
+  hitClip: {fileID: 8300000, guid: 191888c761b4e344f8021e6d823026da, type: 3}
 --- !u!1001 &2779319129329014143
 PrefabInstance:
   m_ObjectHideFlags: 0
