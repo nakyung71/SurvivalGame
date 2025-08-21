@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d083b7de9c11c4482fc2edea594ef7, type: 3}
-  m_Name: NPCCat(1)
+  m_Name: NPCCat(2)
   m_EditorClassIdentifier: 
   TalkerName: Cat
-  dialogueID: 1.1
+  dialogueID: 0
   dialogueLines:
-  - "\uC88B\uC544 \uADF8\uB7FC \uD55C\uBC88 \uB0B4\uAC00 \uC694\uCCAD\uD588\uB358
-    \uC7AC\uB8CC\uB97C \uAC00\uC838\uC654\uB294\uC9C0 \uCCB4\uD06C\uD574\uBCFC\uAE4C?"
-  choiceButtonText:
-  - "\uAC74\uB124\uC900\uB2E4"
-  - "\uCDE8\uC18C\uD55C\uB2E4"
-  choiceExist: 1
+  - "\uB0B4\uAC00 \uD2B9\uBCC4\uD788 \uC774\uBC88\uC5D0\uB294 \uB108\uAC00 \uC900
+    \uB098\uBB34\uB85C \uC9D1\uC744 \uC9C0\uC5B4\uC92C\uC5B4~"
+  choiceButtonText: []
+  choiceExist: 0
   nextDialogueExist: 0
   nextDialogueID_Button1: 0
   nextDialogueID_Button2: 0

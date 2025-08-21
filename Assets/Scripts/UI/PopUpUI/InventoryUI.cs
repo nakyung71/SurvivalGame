@@ -60,6 +60,7 @@ public class InventoryUI : PopUpUI
         controller.inventory += Toggle;
 
         CharacterManager.Instance.Player.addItem += AddItem;
+        CharacterManager.Instance.Player.inventory.GetInventoryInfo(this);
 
         inventoryWindow.SetActive(false);
         slots = new ItemSlot[slotPanel.childCount];
