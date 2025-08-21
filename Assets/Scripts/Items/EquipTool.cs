@@ -21,7 +21,7 @@ public class EquipTool : Equip
     {
         camera = Camera.main;
         animator = GetComponent<Animator>();
-        attackSound = GetComponent<AttackSound>();
+        attackSound = GetComponentInParent<AttackSound>();
     }
 
     public override void OnAttackInput()
