@@ -1,231 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
-public enum AIState
+public class NPC : BaseNPC, ITalkable, IInteractable, IQuest
 {
-    Idle,
-    Walk,
-    Run
-}
+    [SerializeField] NPCData[] NPCDatas;
 
-public class NPC : MonoBehaviour, IDamageable
-{
-    [Header("Stats")]
-    public int health;
-    public float walkSpeed;
-    public float runSpeed;
-    public ItemData[] dropOnDeath;
+    public int TalkTimes { get; private set; } = 0;
 
-    [Header("AI")]
-    private NavMeshAgent agent;
-    public float detectDistance;
-    private AIState aiState;
+    public bool IsQuestAccepted { get; private set; } = false;
 
-    [Header("Wandering")]
-    public float minWanderDistance;
-    public float maxWanderDistance;
-    public float minWanderWaitTime;
-    public float maxWanderWaitTime;
+    private int goalQuantity = 20;
 
-    private float playerDistance;
+    //꼭 인스펙터 창에 대화 SO를 넣어야 진행이 됩니다.
 
-    public float fieldOfView = 120f;
-
-    private Animator animator;
-    private SkinnedMeshRenderer[] meshRenderers;
-
-    private int safeDistance = 7;
-
-    [SerializeField] DialogueData data;
-    public DialogueData DialogueData => data;
-
-    private void Awake()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponentInChildren<Animator>();
-        meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-    }
-
-    private void Start()
-    {
-        StartCoroutine(InitAfterPlaced());
-    }
-
-    IEnumerator InitAfterPlaced()
-    {
-        yield return new WaitUntil(() => IsAgentReady(agent));
-        SetState(AIState.Walk);
-    }
-
-    private void Update()
-    {
-        if (!IsAgentReady(agent))
-            return; // 아직 NavMesh에 안 올라갔으면 아무것도 하지 않음
-
-        playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position);
-
-        animator.SetBool("IsWalk", aiState == AIState.Walk);
-        animator.SetBool("IsRun", aiState == AIState.Run);
-
-        switch (aiState)
-        {
-            case AIState.Idle:
-                PassiveUpdate();
-                break;
-            case AIState.Walk:
-                PassiveUpdate();
-                break;
-            case AIState.Run:
-                RunUpdate();
-                break;
-        }
-    }
-
-    bool IsAgentReady(NavMeshAgent a)
-    {
-        return a != null
-            && a.isActiveAndEnabled
-            && a.isOnNavMesh; // 핵심: NavMesh 위 여부
-    }
-
-    private void SetState(AIState state)
-    {
-        aiState = state;
-
-        switch (aiState)
-        {
-            case AIState.Idle:
-                agent.speed = walkSpeed;
-                agent.isStopped = true;
-                break;
-            case AIState.Walk:
-                agent.speed = walkSpeed;
-                agent.isStopped = false;
-                break;
-            case AIState.Run:
-                agent.speed = runSpeed;
-                agent.isStopped = false;
-                break;
-        }
-
-    }
-
-    void PassiveUpdate()
-    {
-        if (aiState == AIState.Walk && agent.remainingDistance < 0.1f)
-        {
-            SetState(AIState.Idle);
-            Invoke("WanderToNewLocation", Random.Range(minWanderWaitTime, maxWanderWaitTime));
-        }
-
-        if (playerDistance < detectDistance)
-        {
-            SetState(AIState.Walk);
-        }
-    }
-
-    void RunUpdate()
-    {
-        if (agent.remainingDistance < 0.1f)
-        {
-            agent.SetDestination(GetFleeLocation());
-        }
-        else
-        {
-            SetState(AIState.Run);
-        }
-    }
-
-    void WanderToNewLocation()
-    {
-        if (aiState != AIState.Idle) return;
-
-        SetState(AIState.Walk);
-        agent.SetDestination(GetWanderLocation());
-    }
-
-    bool IsPlayerInFieldOfView()
-    {
-        Vector3 directionToPlayer = CharacterManager.Instance.Player.transform.position - transform.position;
-        float angle = Vector3.Angle(transform.forward, directionToPlayer);
-        return angle < fieldOfView * 0.5f;
-    }
-
-    Vector3 GetFleeLocation()
-    {
-        NavMeshHit hit;
-
-        NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * safeDistance), out hit, maxWanderDistance, NavMesh.AllAreas);
-
-        int i = 0;
-        while (GetDestinationAngle(hit.position) > 90 || playerDistance < safeDistance)
-        {
-
-            NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * safeDistance), out hit, maxWanderDistance, NavMesh.AllAreas);
-            i++;
-            if (i == 30)
-                break;
-        }
-
-        return hit.position;
-    }
-
-    Vector3 GetWanderLocation()
-    {
-        NavMeshHit hit;
-
-        NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
-
-        int i = 0;
-        while (Vector3.Distance(transform.position, hit.position) < detectDistance)
-        {
-            NavMesh.SamplePosition(transform.position + (Random.onUnitSphere * Random.Range(minWanderDistance, maxWanderDistance)), out hit, maxWanderDistance, NavMesh.AllAreas);
-            i++;
-            if (i == 30) break;
-        }
-
-        return hit.position;
-    }
-
-    float GetDestinationAngle(Vector3 targetPos)
-    {
-        return Vector3.Angle(transform.position - CharacterManager.Instance.Player.transform.position, transform.position + targetPos);
-    }
-
-    public void TakePhysicalDamage(int damageAmount)
-    {
-        health -= damageAmount;
-        if (health <= 0)
-            Die();
-
-        StartCoroutine(DamageFlash());
-    }
-
-    void Die()
-    {
-        for (int x = 0; x < dropOnDeath.Length; x++)
-        {
-            Instantiate(dropOnDeath[x].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
-        }
-
-        Destroy(gameObject);
-    }
-
-    IEnumerator DamageFlash()
-    {
-        for (int x = 0; x < meshRenderers.Length; x++)
-            meshRenderers[x].material.color = new Color(1.0f, 0.6f, 0.6f);
-
-        yield return new WaitForSeconds(0.1f);
-        for (int x = 0; x < meshRenderers.Length; x++)
-            meshRenderers[x].material.color = Color.white;
-    }
+    [SerializeField] ItemData questItemData;
+    [SerializeField] GameObject successReward;
 
     public void AcceptQuest()
     {
-        Debug.Log("퀘스트");
+
+        Debug.Log($"{this.name}의 퀘스트 수락");
+        IsQuestAccepted = true;
+
+
+
+
+        //퀘스트에 필요한 메서드나 내용들 여기 적으세요
+        //예를 들어 퀘스트 시작 문구가 뜬다던가
+        // IQuest 상속 시 필수 구현(인터페이스 상속 안하면 작동x)
+
+    }
+
+    public void CheckQuestCondition()
+    {
+        int itemquantity = CharacterManager.Instance.Player.inventory.CheckItemQuantity(questItemData);
+        if (itemquantity >= goalQuantity)
+        {
+            CharacterManager.Instance.Player.inventory.ChangeItemQuantity(-goalQuantity);
+            Instantiate(successReward);
+            // DialogueManager.Instance.SetTalk(NPCDatas[0], this);
+        }
     }
 
     public string GetInteractPrompt()
@@ -238,18 +54,37 @@ public class NPC : MonoBehaviour, IDamageable
                 return "고양이";
             case "NPCPenguin":
                 return "펭귄";
+            case "NPCHorse":
+                return "말";
             default:
                 return "알 수 없는 생물";
         }
     }
 
-    //public void OnInteract()
-    //{
-    //    DialogueManager.Instance.SetTalk(data, this);
-    //}
+    public void OnInteract()
+    {
+        Talk();
+        //상호작용시 실행할 메서드를 적어주세요
+        //예를 들어 Talk();
+        //IInteractable 상속 시 필수구현
 
-    //public void Talk()
-    //{
-    //    DialogueManager.Instance.SetTalk(data);
-    //}
+    }
+
+    public void Talk()
+    {
+        if (IsQuestAccepted == false)
+        {
+            // DialogueManager.Instance.SetTalk(dialogueDatas[0], this);
+            TalkTimes++;
+        }
+        else
+        {
+            // DialogueManager.Instance.SetTalk(dialogueDatas[1], this);
+        }
+
+        // 대화 경로는 DialogueManager.Instance.SetTalk(data,this); 이며,
+        // 그냥 본인이 들고 있는 데이터와 자기 자신을 SetTalk 메서드의 인자로 넘겨주시면 됩니다.
+        //ITalkable 상속시 필수구현
+    }
+
 }

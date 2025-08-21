@@ -9,10 +9,6 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private Transform player;          // 플레이어 Transform 할당
     [SerializeField] private MeshCollider[] fieldAreas;  // 여러 개 할당 가능, 필드 범위로 쓸 바닥(Ground의 자식 오브젝트로 지정)
 
-    [Header("NPC Prefabs")]
-    public GameObject Kitty;
-    public GameObject Penguin;
-
     [Header("Enemy Prefabs")]
     public GameObject Chicken;
     public GameObject Deer;
@@ -29,11 +25,8 @@ public class NPCSpawner : MonoBehaviour
 
     private void Start()
     {
-        // NPC 2마리(고양이, 펭귄) ? 플레이어 주변에서 각각 1마리씩
-        SpawnNearPlayer(Kitty);
-        SpawnNearPlayer(Penguin);
 
-        // 적들 ? 필드 전체에서 지정 수량만큼
+        // 적들 필드 전체에서 지정 수량만큼
         SpawnInField(Chicken, 25);
         SpawnInField(Deer, 10);
         SpawnInField(Dog, 10);
