@@ -40,6 +40,11 @@ public class ItemSlot : MonoBehaviour,IPointerClickHandler
 
     public void Set()
     {
+        if (quantity==0)
+        {
+            Clear();
+            return;
+        }
         icon.gameObject.SetActive(true);
         icon.sprite = Item.icon;
         quantityText.text = quantity > 1 ? quantity.ToString() : string.Empty;
