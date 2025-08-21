@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 149492525126743595}
   - component: {fileID: 3821163410668700483}
   - component: {fileID: 5358320418620970130}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 3362378486655022374}
   - component: {fileID: 5766138002561943395}
   - component: {fileID: 7698127115793084522}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hammer_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
