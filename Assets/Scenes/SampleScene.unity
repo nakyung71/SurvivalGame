@@ -491,6 +491,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b366c0f51812eb40a90b80ba734add5, type: 2}
   questItemData: {fileID: 11400000, guid: 7d0c62cabbedfe648b9ff9f7f2e5b5fd, type: 2}
   successReward: {fileID: 1528980874}
+--- !u!114 &147325424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147325417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aec86578e91fc941bbf9099aa0a5f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  catNPC: {fileID: 8300000, guid: d9fda1cb25dcc4b47a76f6bbf9180566, type: 3}
+  horseNPC: {fileID: 8300000, guid: 6d669a7aa58f71b4aa089029e556148b, type: 3}
+  sheepNPC: {fileID: 8300000, guid: 55cbcfae71d57974bbb736646e546cc2, type: 3}
 --- !u!114 &244302003 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6424821583215658364, guid: f334ecc67b70b08409934ff775d887ad, type: 3}
@@ -680,28 +696,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2960288497265914252, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
   m_PrefabInstance: {fileID: 530808858}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &502433734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502433725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10482bfbd1fc3534c9fb1d2700bd560a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameUI: {fileID: 0}
-  coldTempLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  hotTempLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  noHungerHealthDecay: 0
-  noThirstHealthDecay: 0
-  temperatureHealthDecay: 0
 --- !u!114 &502433743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,9 +983,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2960288497265914252, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 502433734}
-    - targetCorrespondingSourceObject: {fileID: 2960288497265914252, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 502433743}
     - targetCorrespondingSourceObject: {fileID: 2960288497265914252, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
       insertIndex: -1
@@ -1014,7 +1005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d8ab05b9294cc46abec3c83c99204a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 502433734}
+  player: {fileID: 0}
 --- !u!114 &530808869 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3592829685187914210, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
@@ -1889,6 +1880,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8185963723970810583, guid: 23ad648add943fe4f97c4fe85575f7eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2044976100}
+    - targetCorrespondingSourceObject: {fileID: 8185963723970810583, guid: 23ad648add943fe4f97c4fe85575f7eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2044976101}
   m_SourcePrefab: {fileID: 100100000, guid: 23ad648add943fe4f97c4fe85575f7eb, type: 3}
 --- !u!1 &990813781 stripped
 GameObject:
@@ -1931,6 +1925,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 16e9ffe749fb12d4887d83dfb257d028, type: 2}
   questItemData: {fileID: 11400000, guid: b7a5b59d627aa2a4e977e44f3695b651, type: 2}
   successItemData: {fileID: 11400000, guid: f0744bbb3508ff544bcc6a97f18d35dd, type: 2}
+  npcSound: {fileID: 0}
+--- !u!114 &999214501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999214495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aec86578e91fc941bbf9099aa0a5f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  catNPC: {fileID: 8300000, guid: d9fda1cb25dcc4b47a76f6bbf9180566, type: 3}
+  horseNPC: {fileID: 8300000, guid: 6d669a7aa58f71b4aa089029e556148b, type: 3}
+  sheepNPC: {fileID: 8300000, guid: 55cbcfae71d57974bbb736646e546cc2, type: 3}
 --- !u!64 &999251638 stripped
 MeshCollider:
   m_CorrespondingSourceObject: {fileID: 3019102693796463133, guid: be534758ac2af7948b4c114566cace5b, type: 3}
@@ -2982,6 +2993,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6397291155531275063, guid: b8f9b58adfe4cb34ab1cfa65bd988f4e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 999214500}
+    - targetCorrespondingSourceObject: {fileID: 6397291155531275063, guid: b8f9b58adfe4cb34ab1cfa65bd988f4e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 999214501}
   m_SourcePrefab: {fileID: 100100000, guid: b8f9b58adfe4cb34ab1cfa65bd988f4e, type: 3}
 --- !u!1001 &1827476461
 PrefabInstance:
@@ -3821,6 +3835,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3851015956068934394, guid: ab605ba70ede75049b2df88b5155cddc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 147325423}
+    - targetCorrespondingSourceObject: {fileID: 3851015956068934394, guid: ab605ba70ede75049b2df88b5155cddc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 147325424}
   m_SourcePrefab: {fileID: 100100000, guid: ab605ba70ede75049b2df88b5155cddc, type: 3}
 --- !u!64 &1987734762 stripped
 MeshCollider:
@@ -3973,6 +3990,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueDatas:
   - {fileID: 11400000, guid: d699e828d85f481499c20ceeee6b0424, type: 2}
+--- !u!114 &2044976101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044976095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aec86578e91fc941bbf9099aa0a5f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  catNPC: {fileID: 8300000, guid: d9fda1cb25dcc4b47a76f6bbf9180566, type: 3}
+  horseNPC: {fileID: 8300000, guid: 6d669a7aa58f71b4aa089029e556148b, type: 3}
+  sheepNPC: {fileID: 8300000, guid: 55cbcfae71d57974bbb736646e546cc2, type: 3}
 --- !u!1001 &2052720159
 PrefabInstance:
   m_ObjectHideFlags: 0
