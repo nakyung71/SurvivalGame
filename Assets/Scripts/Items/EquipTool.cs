@@ -83,7 +83,7 @@ public class EquipTool : Equip
                     {                                                   // ★추가
                         Debug.Log($"[공격 판정] {resource.name} 에서 자원 채집 시도"); // (원문 유지)
                         resource.Gather(hit.point, hit.normal);         // (원문 유지)
-                        if (attackSound != null) attackSound.Hit();     // ★변경: NRE 가드 + 호환될 때만 Hit
+                        if (attackSound != null) attackSound.WoodHit();     // ★변경: NRE 가드 + 호환될 때만 Hit
                     }                                                   // ★추가
                     else                                                // ★추가
                     {                                                   // ★추가
