@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b9a5ede2b90f34d8d90a9dd1420164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceKind: 1
   itemToGive: {fileID: 11400000, guid: c500888ccf7e4f244a0d9ab6b4ba320d, type: 2}
   quantityPerHit: 1
   capacity: 5
