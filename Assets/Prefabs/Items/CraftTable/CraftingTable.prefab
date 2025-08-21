@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1406262843020552828}
   - component: {fileID: 6053733635162845408}
   - component: {fileID: 8891255412298842474}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 65073758393531384}
   - component: {fileID: 2171691486444125856}
   - component: {fileID: 2513662951160384957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Anvil1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,8 @@ GameObject:
   - component: {fileID: 112251220171092989}
   - component: {fileID: 458994158970921684}
   - component: {fileID: -3720997585049917662}
-  m_Layer: 0
+  - component: {fileID: 1083595876425913451}
+  m_Layer: 7
   m_Name: CraftingTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,6 +241,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.5, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1083595876425913451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2526041021692864975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4ade5620c75ec429c6b15fea0f1bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4930483456526090441
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +264,7 @@ GameObject:
   - component: {fileID: 7944290684118649397}
   - component: {fileID: 8889773556664905113}
   - component: {fileID: 3625896909916288410}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Anvil2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +347,7 @@ GameObject:
   - component: {fileID: 3007582814503495658}
   - component: {fileID: 4618082714307313558}
   - component: {fileID: 1184931612340404054}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hammer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
