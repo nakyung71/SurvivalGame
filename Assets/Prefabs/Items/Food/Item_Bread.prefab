@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1017742913505606106}
   - component: {fileID: 1116445215307811121}
   - component: {fileID: 7388539726378715742}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Item_Bread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4050375171859060512}
   - component: {fileID: 1589192078020459938}
   - component: {fileID: 8967601350468425939}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
