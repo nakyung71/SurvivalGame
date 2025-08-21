@@ -10,6 +10,7 @@ public class Equipment : MonoBehaviour
 
     private PlayerController controller;
     private PlayerCondition condition;
+    private AttackSound attackSound;
 
     void Start()
     {

@@ -16,7 +16,6 @@ public class NPCSpawner : MonoBehaviour
     public GameObject Tiger;
 
     [Header("Spawn Settings")]
-    [SerializeField] private float npcSpawnDistance = 5f;
     [SerializeField] private LayerMask groundMask = ~0;   // 지면 레이어(필요시 설정)
     [SerializeField] private float navMeshMaxSampleDist = 8f;
     [SerializeField] private float minSeparation = 1.0f;  // 서로 겹치지 않도록 간단한 거리 제한
