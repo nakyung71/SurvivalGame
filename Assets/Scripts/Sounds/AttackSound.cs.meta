@@ -3,7 +3,10 @@ guid: 90590cec58d879f478a98c68aef93cf7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - audioSource: {instanceID: 0}
+  - swingClip: {fileID: 8300000, guid: 81d6c0eb0dc0a3743906c80ecb65f04c, type: 3}
+  - hitClip: {fileID: 8300000, guid: 191888c761b4e344f8021e6d823026da, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
