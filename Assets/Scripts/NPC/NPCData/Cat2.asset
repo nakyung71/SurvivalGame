@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d083b7de9c11c4482fc2edea594ef7, type: 3}
-  m_Name: Cat1
+  m_Name: Cat2
   m_EditorClassIdentifier: 
   TalkerName: Cat
   dialogueID: 0
   dialogueLines:
-  - "\uB0B4\uAC00 \uBD80\uD0C1\uD55C \uB098\uBB34\uD310\uC790 1\uAC1C\uB97C \uAC00\uC838\uC654\uB0E5?
-    \n\uC800\uAE30 \uB4A4\uC5D0 \uC791\uC5C5\uB300\uC5D0\uC11C \uB098\uBB34\uB97C
-    \uAC00\uACF5\uD560 \uC218 \uC788\uB2E4\uB0E5!"
-  choiceButtonText:
-  - "\uAC74\uB124\uC900\uB2E4"
-  - "\uAC70\uC808\uD55C\uB2E4"
-  choiceExist: 1
-  nextDialogueExist: 1
+  - "\uC778\uBCA4\uD1A0\uB9AC\uC5D0 \uCE7C\uC744 \uB123\uC5B4\uB1A8\uB2E4\uB0E5!
+    \uC774\uAC78\uB85C \uC5F4\uC2EC\uD788 \uC0AC\uB0E5\uD558\uACE0 \uB2E4\uB2C8\uB77C\uB0E5!"
+  - "\uC815\uB9D0 \uACE0\uB9D9\uB2E4\uB0E5 \uB355\uBD84\uC5D0 \uD3B8\uD788 \uC798
+    \uC218 \uC788\uB2E4\uB0E5!"
+  choiceButtonText: []
+  choiceExist: 0
+  nextDialogueExist: 0
   nextDialogueID_Button1: 0
   nextDialogueID_Button2: 0

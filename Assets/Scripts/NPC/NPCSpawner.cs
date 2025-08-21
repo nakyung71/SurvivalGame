@@ -20,7 +20,8 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private float navMeshMaxSampleDist = 8f;
     [SerializeField] private float minSeparation = 1.0f;  // 서로 겹치지 않도록 간단한 거리 제한
 
-    private readonly List<Vector3> _spawned = new();
+    // 살아있는 개체 추적(프리팹별)
+    private readonly Dictionary<GameObject, HashSet<SpawnedUnit>> _live = new();
 
     private void Start()
     {
@@ -34,9 +35,13 @@ public class NPCSpawner : MonoBehaviour
 
     private void SpawnInField(GameObject prefab, int count)
     {
+        if (prefab == null || count <= 0) return;
+
         for (int i = 0; i < count; i++)
         {
             const int maxTries = 25;
+            bool spawned = false;
+
             for (int t = 0; t < maxTries; t++)
             {
                 Vector3 probe = ProjectToGround(RandomPointInArea());
@@ -55,7 +60,16 @@ public class NPCSpawner : MonoBehaviour
                     ag.enabled = true;
                     ag.Warp(navPos);
                 }
+
+                // 최종 위치로 등록 (겹침 판단용)
+                RegisterInstance(prefab, go);
+                spawned = true;
                 break;
+            }
+
+            if (!spawned)
+            {
+                Debug.LogWarning($"[NPCSpawner] {prefab.name} 스폰 실패: 위치 찾기 실패");
             }
         }
     }
@@ -117,13 +131,43 @@ public class NPCSpawner : MonoBehaviour
         return false;
     }
 
+    public void OnUnitDestroyed(GameObject prefab, SpawnedUnit marker)
+    {
+        // 목록에서 제거
+        if (prefab != null && _live.TryGetValue(prefab, out var set))
+            set.Remove(marker);
+
+        // 죽은 만큼 보충
+        SpawnInField(prefab, 1);
+    }
+
+    private void RegisterInstance(GameObject prefab, GameObject instance)
+    {
+        var marker = instance.GetComponent<SpawnedUnit>();
+        if (marker == null) marker = instance.AddComponent<SpawnedUnit>();
+        marker.spawner = this;
+        marker.prefabKey = prefab;
+
+        if (!_live.TryGetValue(prefab, out var set))
+        {
+            set = new HashSet<SpawnedUnit>();
+            _live[prefab] = set;
+        }
+        set.Add(marker);
+    }
+
     private bool IsFarEnough(Vector3 pos)
     {
-        foreach (var p in _spawned)
+        float minSqr = minSeparation * minSeparation;
+        foreach (var kv in _live)
         {
-            if (Vector3.SqrMagnitude(p - pos) < minSeparation * minSeparation) return false;
+            foreach (var unit in kv.Value)
+            {
+                if (unit == null) continue;
+                var t = unit.transform;
+                if ((t.position - pos).sqrMagnitude < minSqr) return false;
+            }
         }
-        _spawned.Add(pos);
         return true;
     }
 
