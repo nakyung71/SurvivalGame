@@ -1153,6 +1153,7 @@ GameObject:
   - component: {fileID: 877028587787157588}
   - component: {fileID: 6914040100783175777}
   - component: {fileID: -5908245245399892420}
+  - component: {fileID: 8239928974772642408}
   m_Layer: 10
   m_Name: EnemyChicken
   m_TagString: Untagged
@@ -1267,6 +1268,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8239928974772642408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073443194988779917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e246991ff3eddd41a61118d5e0c6d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 877028587787157588}
 --- !u!1 &8122850409471221505
 GameObject:
   m_ObjectHideFlags: 0

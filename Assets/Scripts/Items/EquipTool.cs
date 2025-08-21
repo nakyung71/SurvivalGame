@@ -50,6 +50,18 @@ public class EquipTool : Equip
         {
             Debug.Log($"[공격 판정] {hit.collider.name} 에 맞음 (좌표: {hit.point})");
 
+            if (doesDealDamage)
+            {
+                // 자식 콜라이더를 맞아도 부모의 Enemy를 찾도록 InParent 사용
+                var damageable = hit.collider.GetComponentInParent<IDamageable>();
+                if (damageable != null)
+                {
+                    damageable.TakePhysicalDamage(damage);
+                    Debug.Log($"[전투] {hit.collider.name} 에 {damage} 피해");
+                    return; // 한 번의 스윙에 자원채집까지 함께하지 않으려면 바로 종료
+                }
+            }
+
             if (doesGatherResources)
             {
                 var resource = hit.collider.GetComponentInParent<Resource>();

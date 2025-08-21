@@ -85,7 +85,6 @@ public class PlayerController : MonoBehaviour
     }
     private void Move()
     {
-
             Vector3 dir = transform.forward * moveInput.y + transform.right * moveInput.x;
             dir *= moveSpeed * runSpeed;
             dir.y = rb.velocity.y;

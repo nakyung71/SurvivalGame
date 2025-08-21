@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 90071767595189172}
   - component: {fileID: 4808069231017513803}
   - component: {fileID: 813431379892456484}
+  - component: {fileID: 6567743262854537023}
   m_Layer: 10
   m_Name: EnemyDog
   m_TagString: Untagged
@@ -568,6 +569,19 @@ MonoBehaviour:
   attackRate: 2
   attackDistance: 1.5
   fieldOfView: 120
+--- !u!114 &6567743262854537023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2629182449500102118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e246991ff3eddd41a61118d5e0c6d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 813431379892456484}
 --- !u!1 &2735724662372591797
 GameObject:
   m_ObjectHideFlags: 0

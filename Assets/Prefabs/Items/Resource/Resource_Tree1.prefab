@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7042424737677881981}
   - component: {fileID: 5334733646608687862}
   - component: {fileID: 2482130935908725381}
+  - component: {fileID: 7991404641834854074}
   m_Layer: 13
   m_Name: Tree1
   m_TagString: Untagged
@@ -99,8 +100,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemToGive: {fileID: 11400000, guid: 7d0c62cabbedfe648b9ff9f7f2e5b5fd, type: 2}
   quantityPerHit: 1
-  capacity: 0
+  capacity: 5
   maxCapacity: 5
+--- !u!65 &7991404641834854074
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879419354131727197}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6, y: 4, z: 1.24}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &8550446404334236328
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1358372904725207861}
   - component: {fileID: 2822876852059818937}
-  - component: {fileID: 5601294370375535254}
+  - component: {fileID: 5933876190305605453}
   m_Layer: 13
   m_Name: Resource_Tree1
   m_TagString: Untagged
@@ -151,24 +173,17 @@ MonoBehaviour:
   quantityPerHit: 1
   capacity: 5
   maxCapacity: 5
---- !u!65 &5601294370375535254
-BoxCollider:
+--- !u!114 &5933876190305605453
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8550446404334236328}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 3.09, z: 1}
-  m_Center: {x: 0, y: 1.48, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4555761eb2226354e8bf7115e7d5c4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnTime: 20
+  resource: {fileID: 0}
