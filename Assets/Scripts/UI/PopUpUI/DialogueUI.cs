@@ -13,9 +13,11 @@ public class DialogueUI :MonoBehaviour
     private void OnEnable()
     {
         playerInput.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
     }
     private void OnDisable()
     {
         playerInput.enabled=true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
