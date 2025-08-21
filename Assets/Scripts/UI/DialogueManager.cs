@@ -10,7 +10,7 @@ public interface ITalkable
 {
     
     public void Talk();
-    int TalkTimes {  get; }
+    int TalkStep {  get; }
 }
 
 public interface IQuest
@@ -71,7 +71,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator Talk(DialogueData data)
     {
-        CharacterManager.Instance.Player.controller.ToggleCursor();
+        //CharacterManager.Instance.Player.controller.ToggleCursor();
         dialogueUI.SetActive(true);
         button1.gameObject.SetActive(false);
         button2.gameObject.SetActive(false);
@@ -89,6 +89,7 @@ public class DialogueManager : MonoBehaviour
             if(currentCoroutine != null)
             {
                 StopCoroutine(currentCoroutine);
+                
             }
             dialogueText.text=string.Empty;
             currentCoroutine= StartCoroutine(SetTypingEffect( data.dialogueLines[index]));
