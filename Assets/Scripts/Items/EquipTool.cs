@@ -21,7 +21,7 @@ public class EquipTool : Equip
     {
         camera = Camera.main;
         animator = GetComponent<Animator>();
-        attackSound = GetComponent<AttackSound>();
+        attackSound = GetComponentInParent<AttackSound>();
     }
 
     public override void OnAttackInput()
@@ -31,6 +31,7 @@ public class EquipTool : Equip
             attacking = true;
             animator.SetTrigger("Attack");
             Invoke("OnCanAttack", attackRate);
+            attackSound.Swing();
         }
     }
 
