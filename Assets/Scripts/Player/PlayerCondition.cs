@@ -30,6 +30,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     private bool isDead = false;
 
+
+    
     private void Awake()
     {
         animator = GetComponent<Animator>();
