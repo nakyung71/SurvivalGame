@@ -169,14 +169,20 @@ public class PlayerController : MonoBehaviour
         if(context.phase==InputActionPhase.Started)
         {
             inventory?.Invoke();
-            ToggleCursor();
+            //ToggleCursor();
         }
     }
 
+
+    public void ChangeCanLook(bool canlook)
+    {
+        canLook = canlook;
+    }
     public void ToggleCursor()
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
+        Debug.Log("≈‰±€");
     }
 }

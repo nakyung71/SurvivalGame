@@ -33,27 +33,6 @@ public class NPCSpawner : MonoBehaviour
         SpawnInField(Tiger, 1);
     }
 
-    private void SpawnNearPlayer(GameObject prefab)
-    {
-        Vector3 ring = RandomPointOnRing(player.position, npcSpawnDistance);
-        Vector3 ground = ProjectToGround(ring);
-
-        if (!TryGetNavmeshPos(ground, navMeshMaxSampleDist, out var navPos)) return;
-        if (!IsFarEnough(navPos)) return;
-
-        var go = Instantiate(prefab, navPos, Quaternion.identity);
-
-        // 프리팹에서 NavMeshAgent는 반드시 Disabled 상태여야 함!
-        var ag = go.GetComponent<NavMeshAgent>();
-        if (ag != null)
-        {
-            ag.enabled = false;               // 안전
-            go.transform.position = navPos;   // 보정 위치
-            ag.enabled = true;                // 이제 켬
-            ag.Warp(navPos);                  // 확실히 NavMesh 위로 배치
-        }
-    }
-
     private void SpawnInField(GameObject prefab, int count)
     {
         for (int i = 0; i < count; i++)

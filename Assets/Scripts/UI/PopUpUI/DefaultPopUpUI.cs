@@ -13,7 +13,7 @@ public class DefaultPopUpUI : PopUpUI
     public override UIKey UIKey => UIKey.Pop_DefaultPopUp;
     private void OnEnable()
     {
-        popUpUIStack.Push(this);
+        UIManager.popUpUIStack.Push(this);
         //문구 수정//문제는 이거 데이터를 어떻게 가져옴?
         
     }
