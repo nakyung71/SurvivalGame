@@ -15,11 +15,13 @@ public class EquipTool : Equip
 
     private Animator animator;
     private Camera camera;
+    private AttackSound attackSound;
 
     private void Awake()
     {
         camera = Camera.main;
         animator = GetComponent<Animator>();
+        attackSound = GetComponent<AttackSound>();
     }
 
     public override void OnAttackInput()
@@ -57,6 +59,7 @@ public class EquipTool : Equip
                 {
                     Debug.Log($"[공격 판정] {resource.name} 에서 자원 채집 시도");
                     resource.Gather(hit.point, hit.normal);
+                    attackSound.Hit();
                 }
                 else
                 {

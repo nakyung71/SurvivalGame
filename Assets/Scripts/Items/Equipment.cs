@@ -10,11 +10,13 @@ public class Equipment : MonoBehaviour
 
     private PlayerController controller;
     private PlayerCondition condition;
+    private AttackSound attackSound;
 
     void Start()
     {
         controller = CharacterManager.Instance.Player.controller;
         condition = CharacterManager.Instance.Player.condition;
+        attackSound = GetComponent<AttackSound>();
     }
 
     public void EquipNew(ItemData data)
@@ -37,6 +39,7 @@ public class Equipment : MonoBehaviour
         if (context.phase == InputActionPhase.Performed && curEquip != null && controller.canLook)
         {
             curEquip.OnAttackInput();
+            attackSound.Swing();
         }
     }
 }
