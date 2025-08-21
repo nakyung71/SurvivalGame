@@ -6,7 +6,9 @@ public class AttackSound : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip swingClip;
-    public AudioClip hitClip;
+    public AudioClip woodHitClip;
+    public AudioClip animalHitClip;
+    public AudioClip stoneHitClip;
 
     public void Start()
     {
@@ -17,8 +19,18 @@ public class AttackSound : MonoBehaviour
         audioSource.PlayOneShot(swingClip);
     }
 
-    public void Hit()
+    public void WoodHit()
     {
-        audioSource.PlayOneShot(hitClip);
+        audioSource.PlayOneShot(woodHitClip);
+    }
+
+    public void AnimalHit()
+    {
+        audioSource.PlayOneShot(animalHitClip);
+    }
+
+    public void StoneHit()
+    {
+        audioSource.PlayOneShot(stoneHitClip);
     }
 }
