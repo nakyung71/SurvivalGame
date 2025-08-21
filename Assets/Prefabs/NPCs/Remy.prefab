@@ -600,9 +600,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3592829685187914210}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3068887226142012890}
   m_SourcePrefab: {fileID: 100100000, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
 --- !u!4 &2476661042487618358 stripped
 Transform:
@@ -770,6 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   condition: {fileID: 0}
+  inventory: {fileID: 0}
   itemData: {fileID: 0}
   equip: {fileID: 3592829685187914210}
   dropPosition: {fileID: 0}
@@ -796,6 +794,7 @@ MonoBehaviour:
   maxXLook: 45
   lookSensitivity: 0.1
   canLook: 1
+  runbool: 0
 --- !u!114 &4108226976997695165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,25 +878,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curEquip: {fileID: 0}
   equipParent: {fileID: 8808621886470332130}
---- !u!114 &3068887226142012890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2960288497265914252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10482bfbd1fc3534c9fb1d2700bd560a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameUI: {fileID: 0}
-  coldTempLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  hotTempLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  noHungerHealthDecay: 0
-  noThirstHealthDecay: 0
-  temperatureHealthDecay: 0
