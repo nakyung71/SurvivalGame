@@ -207,7 +207,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f520227a19beef24bad3f2129df6baed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: b19a0760eb19e604d9ce87a7d14f5a55, type: 2}
+  NPCDatas:
+  - {fileID: 11400000, guid: 4efef712bd678374690f91a9cfc32326, type: 2}
+  - {fileID: 11400000, guid: 6ae4da78f1c9c034aa7edc10229a4584, type: 2}
+  - {fileID: 11400000, guid: a9c79b6629e0a7a42895e635153b9dc6, type: 2}
+  questItemData: {fileID: 11400000, guid: 65414baff4e4343479415ff33d1804c0, type: 2}
+  successReward: {fileID: 5969371552105310364, guid: 75b96a0042a623945aba46fe9f196e05, type: 3}
 --- !u!95 &6788066205645133815
 Animator:
   serializedVersion: 5
