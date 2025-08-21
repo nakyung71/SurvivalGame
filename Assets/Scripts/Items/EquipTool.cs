@@ -60,7 +60,9 @@ public class EquipTool : Equip
                 if (damageable != null)
                 {
                     damageable.TakePhysicalDamage(damage);
+                    attackSound.AnimalHit();
                     Debug.Log($"[전투] {hit.collider.name} 에 {damage} 피해");
+                    
                     return; // 한 번의 스윙에 자원채집까지 함께하지 않으려면 바로 종료
                 }
             }
@@ -72,7 +74,7 @@ public class EquipTool : Equip
                 {
                     Debug.Log($"[공격 판정] {resource.name} 에서 자원 채집 시도");
                     resource.Gather(hit.point, hit.normal);
-                    attackSound.Hit();
+                    attackSound.WoodHit();
                 }
                 else
                 {
