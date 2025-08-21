@@ -46,9 +46,8 @@ public class InventoryUI : PopUpUI
     private void OnEnable()
     {
         
-        popUpUIStack.Push(this);
-        Debug.Log("스택에 넣음");
-        Debug.Log(popUpUIStack.Count);
+        UIManager.popUpUIStack.Push(this);
+        
         
         
     }
@@ -96,14 +95,11 @@ public class InventoryUI : PopUpUI
 
     public void Toggle()
     {
-        if (IsOpen())
+        if (!IsOpen())
         {
-            inventoryWindow.SetActive(false);
+            UIManager.Instance.ShowUI(this.gameObject);
         }
-        else
-        {
-            inventoryWindow.SetActive(true);
-        }
+        
     }
 
     public bool IsOpen()
@@ -113,7 +109,7 @@ public class InventoryUI : PopUpUI
 
 
 
-    void AddItem()
+    public void AddItem()
     {
         Debug.Log("아이템 등록");
         ItemData data = CharacterManager.Instance.Player.itemData;
@@ -143,7 +139,7 @@ public class InventoryUI : PopUpUI
         CharacterManager.Instance.Player.itemData = null;
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         for (int i = 0; i < slots.Length; i++)
         {

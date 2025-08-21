@@ -78,14 +78,21 @@ public class DialogueManager : MonoBehaviour
         int index = 0;
         speakerNameText.SetText(data.TalkerName);
         moveToNextLine = true;
+        Coroutine currentCoroutine = null;
 
-        while(index<data.dialogueLines.Length)
+        while (index<data.dialogueLines.Length)
         {
             
             yield return new WaitUntil(() => moveToNextLine);
 
             moveToNextLine = false;
-            dialogueText.SetText(data.dialogueLines[index]);
+            if(currentCoroutine != null)
+            {
+                StopCoroutine(currentCoroutine);
+            }
+            dialogueText.text=string.Empty;
+            currentCoroutine= StartCoroutine(SetTypingEffect( data.dialogueLines[index]));
+            
             if (data.choiceExist && index == data.dialogueLines.Length - 1)
             {
                 Debug.Log(index);
@@ -172,6 +179,16 @@ public class DialogueManager : MonoBehaviour
        //중요한거는 눌렀을때 대화마다 다른 것이 시행되어야해
        //그리고 어떤건 대화로 이어지고 어떤건 퀘스트로 이어지고
        
+    }
+
+    IEnumerator SetTypingEffect(string text)
+    {
+        
+        foreach(char letter  in text)
+        {
+            yield return null;
+            dialogueText.text += letter;
+        }
     }
     
 }
