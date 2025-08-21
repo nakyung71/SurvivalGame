@@ -8,11 +8,17 @@ public class NPCHorse : BaseNPC,ITalkable,IQuest,IInteractable
     [SerializeField] ItemData questItemData;
     [SerializeField] GameObject successReward;
 
+    private NPCSound npcSound;
     public int TalkStep { get; private set; } = 0;
 
     public bool IsQuestAccepted { get; private set; } = false;
 
     private int goalQuantity = 3;
+
+    private void Start()
+    {
+        npcSound = GetComponentInParent<NPCSound>();
+    }
     public void AcceptQuest()
     {
 
@@ -43,8 +49,9 @@ public class NPCHorse : BaseNPC,ITalkable,IQuest,IInteractable
 
     public void OnInteract()
     {
+        npcSound.Horse();
         Talk();
-
+        npcSound.Horse();
     }
 
     public void Talk()
