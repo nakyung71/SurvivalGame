@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,9 @@ public class CraftingSlot : MonoBehaviour,IPointerClickHandler
     [SerializeField] Image neededItem_2;
     [SerializeField] Image resultItem;
     [SerializeField] GameObject plusText;
+    [SerializeField] TextMeshProUGUI neededQuantityText_1;
+    [SerializeField] TextMeshProUGUI neededQuantityText_2;
+
     public CraftingData SlotCraftingData {  get; private set; }
     CraftingUI craftingUI;
 
@@ -36,6 +40,8 @@ public class CraftingSlot : MonoBehaviour,IPointerClickHandler
             neededItem_2.gameObject.SetActive(false);
             plusText.SetActive(false);
             resultItem.sprite = craftingData.resultItem.icon;
+            neededQuantityText_1.text = craftingData.neededItems[0].neededQuantity.ToString();
+            
         }
         else if(craftingData.neededItems.Length == 2) 
         {
@@ -43,6 +49,8 @@ public class CraftingSlot : MonoBehaviour,IPointerClickHandler
             neededItem_2.sprite=craftingData.neededItems[1].itemData.icon;
             plusText.SetActive(true);
             resultItem.sprite = craftingData.resultItem.icon;
+            neededQuantityText_1.text = craftingData.neededItems[0].neededQuantity.ToString();
+            neededQuantityText_2.text = craftingData.neededItems[1].neededQuantity.ToString();
         }
     }
 

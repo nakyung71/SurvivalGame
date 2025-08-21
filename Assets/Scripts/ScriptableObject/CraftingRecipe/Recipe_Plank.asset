@@ -15,4 +15,4 @@ MonoBehaviour:
   neededItems:
   - itemData: {fileID: 11400000, guid: 7d0c62cabbedfe648b9ff9f7f2e5b5fd, type: 2}
     neededQuantity: 2
-  resultItem: {fileID: 11400000, guid: 549befb1921de3843a4bb6ebe34cd1d0, type: 2}
+  resultItem: {fileID: 11400000, guid: b7a5b59d627aa2a4e977e44f3695b651, type: 2}
