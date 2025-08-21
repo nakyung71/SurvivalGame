@@ -897,7 +897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3244153448273537205, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3545167239126240548, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
       propertyPath: m_Camera
@@ -918,6 +918,14 @@ PrefabInstance:
     - target: {fileID: 4145079394708443716, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
       propertyPath: condition
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575510000855705955, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575510000855705955, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5855170018877331709, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
       propertyPath: moveSpeed
@@ -942,6 +950,10 @@ PrefabInstance:
     - target: {fileID: 8768509352596864843, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808621886470332130, guid: f82047857260e6a48b237c55f1c471b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
