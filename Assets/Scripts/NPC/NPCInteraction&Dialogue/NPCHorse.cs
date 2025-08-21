@@ -29,6 +29,7 @@ public class NPCHorse : BaseNPC,ITalkable,IQuest,IInteractable
             CharacterManager.Instance.Player.inventory.ChangeItemQuantity(-goalQuantity);
 
             successReward.SetActive(true);
+            UIManager.Instance.questCompleteUI.gameObject.SetActive(true);
             
             TalkStep = 1;
         }
