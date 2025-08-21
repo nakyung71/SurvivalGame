@@ -487,9 +487,9 @@ MonoBehaviour:
   hotTempLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  noHungerHealthDecay: 0
-  noThirstHealthDecay: 0
-  temperatureHealthDecay: 0
+  noHungerHealthDecay: 3
+  noThirstHealthDecay: 3
+  temperatureHealthDecay: 3
 --- !u!114 &502433743
 MonoBehaviour:
   m_ObjectHideFlags: 0
