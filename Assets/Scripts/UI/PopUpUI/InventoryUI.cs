@@ -113,7 +113,7 @@ public class InventoryUI : PopUpUI
 
 
 
-    void AddItem()
+    public void AddItem()
     {
         Debug.Log("아이템 등록");
         ItemData data = CharacterManager.Instance.Player.itemData;

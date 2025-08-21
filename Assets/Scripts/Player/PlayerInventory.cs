@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    InventoryUI inventoryUI;
+    public InventoryUI inventoryUI;
     ItemSlot questItemSlot;
 
     public void GetInventoryInfo(InventoryUI inventoryUI)

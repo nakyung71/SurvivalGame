@@ -657,6 +657,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3446b85dcc28a347a79f1762f65c7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  craftItemImage: {fileID: 5001851016778763702}
+  craftItemName: {fileID: 584491975338055619}
+  craftButton: {fileID: 5958096256952205161}
 --- !u!114 &8384959100642021439
 MonoBehaviour:
   m_ObjectHideFlags: 0

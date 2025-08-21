@@ -37,28 +37,5 @@ public class UIManager : MonoBehaviour
         
 
 
-        //GameObject go = ResourceManager.Instance.GetPrefab(key);
-        //if(go == null)
-        //{
-        //    Debug.Log("UI를 찾을 수 없습니다");
-        //    return;
-        //}
-        //else
-        //{
-        //    if (CheckOpenUI(go))
-        //    {
-                
-        //        go.SetActive(true);
-        //    }
-        //    else
-        //    {
-        //        Canvas canvas = ResourceManager.Instance.GetCanvas(state);
-        //        Instantiate(go, canvas.transform, false);
-        //        openedUIList.Add(go);
-        //        go.SetActive(true);
-        //    }
-
-        //}
-
     }
 }
