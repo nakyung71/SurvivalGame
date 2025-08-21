@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public enum UIActiveState
@@ -18,6 +19,8 @@ public class UIManager : MonoBehaviour
     public InventoryUI inventoryUI;
     public DialogueUI dialogueUI;
     public CraftingUI craftingUI;
+    public QuestCompleteUI questCompleteUI;
+    
     List<GameObject> openedUIList = new List<GameObject>();
     public static Stack<PopUpUI> popUpUIStack = new Stack<PopUpUI>();
     [SerializeField] PlayerInput playerInput;
@@ -31,6 +34,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
        StartCoroutine(ClearStack());
+       
     }
 
     IEnumerator ClearStack()
@@ -70,7 +74,11 @@ public class UIManager : MonoBehaviour
     //리스트에 넣는건 본인들이지만, 결국 그걸 관리하는 건 여기서?
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            questCompleteUI.gameObject.SetActive(true);
+            Debug.Log("퀘스트 열어보기");
+        }
 
         if (currentState == UIActiveState.Active)
         {
@@ -115,4 +123,6 @@ public class UIManager : MonoBehaviour
 
 
     }
+
+    
 }
