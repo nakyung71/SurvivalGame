@@ -17,6 +17,12 @@ public class EquipTool : Equip
     private Camera camera;
     private AttackSound attackSound;
 
+    // ===== ▼▼▼ 추가: 도구 종류 정의 ▼▼▼ =====
+    public enum ToolKind { Axe, Hammer }                // ★추가
+    [Header("Tool")]                                    // ★추가
+    public ToolKind toolKind = ToolKind.Axe;            // ★추가
+    // ===== ▲▲▲ 추가: 도구 종류 정의 ▲▲▲ =====
+
     private void Awake()
     {
         camera = Camera.main;
@@ -31,7 +37,7 @@ public class EquipTool : Equip
             attacking = true;
             animator.SetTrigger("Attack");
             Invoke("OnCanAttack", attackRate);
-            attackSound.Swing();
+            if (attackSound != null) attackSound.Swing();   // ★변경: NRE 방지 가드 추가
         }
     }
 
@@ -72,9 +78,18 @@ public class EquipTool : Equip
                 var resource = hit.collider.GetComponentInParent<Resource>();
                 if (resource != null)
                 {
-                    Debug.Log($"[공격 판정] {resource.name} 에서 자원 채집 시도");
-                    resource.Gather(hit.point, hit.normal);
-                    attackSound.WoodHit();
+                    // ===== ▼▼▼ 추가: 도구-자원 호환 체크 ▼▼▼ =====
+                    if (IsCompatible(toolKind, resource.resourceKind))  // ★추가
+                    {                                                   // ★추가
+                        Debug.Log($"[공격 판정] {resource.name} 에서 자원 채집 시도"); // (원문 유지)
+                        resource.Gather(hit.point, hit.normal);         // (원문 유지)
+                        if (attackSound != null) attackSound.Hit();     // ★변경: NRE 가드 + 호환될 때만 Hit
+                    }                                                   // ★추가
+                    else                                                // ★추가
+                    {                                                   // ★추가
+                        Debug.LogWarning($"[채집] {toolKind} 로는 {resource.resourceKind} 를 캘 수 없음"); // ★추가
+                    }                                                   // ★추가
+                    // ===== ▲▲▲ 추가: 도구-자원 호환 체크 ▲▲▲ =====
                 }
                 else
                 {
@@ -87,4 +102,12 @@ public class EquipTool : Equip
             Debug.Log("[공격 판정] 레이캐스트가 아무것도 맞추지 못함 (범위 부족 또는 콜라이더 없음)");
         }
     }
+
+    // ===== ▼▼▼ 추가: 호환 규칙 함수 ▼▼▼ =====
+    private bool IsCompatible(ToolKind tool, Resource.ResourceKind kind) // ★추가
+    {                                                                    // ★추가
+        return (tool == ToolKind.Axe && kind == Resource.ResourceKind.Tree)   // ★추가
+            || (tool == ToolKind.Hammer && kind == Resource.ResourceKind.Rock); // ★추가
+    }                                                                    // ★추가
+    // ===== ▲▲▲ 추가: 호환 규칙 함수 ▲▲▲ =====
 }
