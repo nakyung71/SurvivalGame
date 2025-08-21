@@ -7,12 +7,16 @@ public class NPCCat : BaseNPC, ITalkable, IQuest, IInteractable
     [SerializeField] DialogueData[] dialogueDatas;
     [SerializeField] ItemData questItemData;
     [SerializeField] ItemData successItemData;
-
+    public NPCSound npcSound;
     public int TalkStep { get; private set; } = 0;
 
     public bool IsQuestAccepted { get; private set; } = false;
 
     private int goalQuantity = 1;
+    private void Start()
+    {
+        npcSound = GetComponentInParent<NPCSound>();
+    }
     public void AcceptQuest()
     {
 
@@ -44,8 +48,9 @@ public class NPCCat : BaseNPC, ITalkable, IQuest, IInteractable
 
     public void OnInteract()
     {
+        npcSound.Cat();
         Talk();
-
+        npcSound.Cat();
     }
 
     public void Talk()
