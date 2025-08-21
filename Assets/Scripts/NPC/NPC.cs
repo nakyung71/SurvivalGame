@@ -9,7 +9,7 @@ public enum AIState
     Walk,
     Run
 }
-
+/*
 public class NPC : MonoBehaviour, IDamageable, ITalkable, IInteractable, IQuest
 {
     [Header("Stats")]
@@ -253,3 +253,4 @@ public class NPC : MonoBehaviour, IDamageable, ITalkable, IInteractable, IQuest
         DialogueManager.Instance.SetTalk(data);
     }
 }
+*/
