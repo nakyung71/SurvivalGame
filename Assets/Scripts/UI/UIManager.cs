@@ -76,10 +76,12 @@ public class UIManager : MonoBehaviour
                 DisablePopUpUI();
             }
             playerInput.actions.FindActionMap("Player").Disable();
+            Cursor.lockState = CursorLockMode.None;
         }
         else if(currentState == UIActiveState.Inactive)
         {
             playerInput.actions.FindActionMap("Player").Enable();
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
