@@ -20,6 +20,11 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private float navMeshMaxSampleDist = 8f;
     [SerializeField] private float minSeparation = 1.0f;  // 서로 겹치지 않도록 간단한 거리 제한
 
+    [Header("No-Spawn Zone")]
+    [SerializeField] private Vector3 noSpawnCenter = Vector3.zero; // (0,0,0)
+    [SerializeField] private float noSpawnRadius = 30f;            // 30m
+    [SerializeField] private bool noSpawnUseXZ = true;             // 수평거리 기준
+
     // 살아있는 개체 추적(프리팹별)
     private readonly Dictionary<GameObject, HashSet<SpawnedUnit>> _live = new();
 
@@ -48,6 +53,9 @@ public class NPCSpawner : MonoBehaviour
 
                 // 필드가 넓으면 샘플 거리 조금 늘리세요(예: 8~12)
                 if (!TryGetNavmeshPos(probe, navMeshMaxSampleDist, out var navPos)) continue;
+
+                if (IsInNoSpawnZone(navPos)) continue;
+                
                 if (!IsFarEnough(navPos)) continue;
 
                 var go = Instantiate(prefab, navPos, Quaternion.identity);
@@ -71,6 +79,22 @@ public class NPCSpawner : MonoBehaviour
             {
                 Debug.LogWarning($"[NPCSpawner] {prefab.name} 스폰 실패: 위치 찾기 실패");
             }
+        }
+    }
+
+    // 금지 구역 판정
+    private bool IsInNoSpawnZone(Vector3 pos)
+    {
+        float r2 = noSpawnRadius * noSpawnRadius;
+        if (noSpawnUseXZ)
+        {
+            Vector2 p = new Vector2(pos.x, pos.z);
+            Vector2 c = new Vector2(noSpawnCenter.x, noSpawnCenter.z);
+            return (p - c).sqrMagnitude < r2;
+        }
+        else
+        {
+            return (pos - noSpawnCenter).sqrMagnitude < r2;
         }
     }
 
