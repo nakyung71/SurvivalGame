@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 4902901175244081879}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -600,6 +600,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3592829685187914210}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1896929533814499580}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9135569988023846358}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8596243355812514260}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3816242150748846201}
   m_SourcePrefab: {fileID: 100100000, guid: bb7809637039b8b4fa67a2176399bd6e, type: 3}
 --- !u!4 &2476661042487618358 stripped
 Transform:
@@ -686,22 +698,6 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5855170018877331709}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnInventory
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a4c2bbc2-c1d8-414b-858f-7ae842a9052e
-    m_ActionName: Player/Inventory[/Keyboard/tab]
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 4108226976997695165}
         m_TargetAssemblyTypeName: Interaction, Assembly-CSharp
         m_MethodName: OnInteractInput
@@ -748,6 +744,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 579f546a-f340-4aba-8524-44cd35c0a109
     m_ActionName: Player/Run[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5855170018877331709}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 59e0dd24-7ace-4b16-9f2c-63a1ec160197
+    m_ActionName: UI/CloseInventory[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -795,6 +807,7 @@ MonoBehaviour:
   lookSensitivity: 0.1
   canLook: 1
   runbool: 0
+  playerInput: {fileID: 3545167239126240548}
 --- !u!114 &4108226976997695165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,3 +891,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curEquip: {fileID: 0}
   equipParent: {fileID: 8808621886470332130}
+--- !u!114 &1896929533814499580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960288497265914252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10482bfbd1fc3534c9fb1d2700bd560a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameUI: {fileID: 0}
+  coldTempLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  hotTempLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  noHungerHealthDecay: 0
+  noThirstHealthDecay: 0
+  temperatureHealthDecay: 0
+--- !u!114 &9135569988023846358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960288497265914252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c33499ca22f20941a31729c45b599ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 0}
+--- !u!114 &8596243355812514260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960288497265914252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d8ab05b9294cc46abec3c83c99204a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1896929533814499580}
+--- !u!114 &3816242150748846201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2960288497265914252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90590cec58d879f478a98c68aef93cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  swingClip: {fileID: 8300000, guid: 81d6c0eb0dc0a3743906c80ecb65f04c, type: 3}
+  woodHitClip: {fileID: 8300000, guid: 191888c761b4e344f8021e6d823026da, type: 3}
+  animalHitClip: {fileID: 8300000, guid: f2ecf9168a91f644bac7b9399b4d4f0f, type: 3}
+  stoneHitClip: {fileID: 8300000, guid: 64a0d0f9c58f78a46bf76b434dbf6ef5, type: 3}
