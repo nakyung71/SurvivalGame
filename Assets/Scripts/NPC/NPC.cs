@@ -9,8 +9,8 @@ public enum AIState
     Walk,
     Run
 }
-/*
-public class NPC : MonoBehaviour, IDamageable, ITalkable, IInteractable, IQuest
+
+public class NPC : MonoBehaviour, IDamageable
 {
     [Header("Stats")]
     public int health;
@@ -243,14 +243,13 @@ public class NPC : MonoBehaviour, IDamageable, ITalkable, IInteractable, IQuest
         }
     }
 
-    public void OnInteract()
-    {
-        DialogueManager.Instance.SetTalk(data, this);
-    }
+    //public void OnInteract()
+    //{
+    //    DialogueManager.Instance.SetTalk(data, this);
+    //}
 
-    public void Talk()
-    {
-        DialogueManager.Instance.SetTalk(data);
-    }
+    //public void Talk()
+    //{
+    //    DialogueManager.Instance.SetTalk(data);
+    //}
 }
-*/

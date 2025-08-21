@@ -12,9 +12,11 @@ public class GameUI : StaticUI
     public Condition thirst;
     public Condition temperature;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        CharacterManager.Instance.Player.condition.gameUI = this;
+        
+    
+    CharacterManager.Instance.Player.condition.gameUI = this;
     }
 
     // Update is called once per frame
