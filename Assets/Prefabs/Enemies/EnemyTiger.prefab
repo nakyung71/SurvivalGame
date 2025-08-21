@@ -946,7 +946,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3178936492765605813}
@@ -1011,7 +1011,12 @@ MonoBehaviour:
   health: 3000
   walkSpeed: 4
   runSpeed: 12
-  dropOnDeath: []
+  dropOnDeath:
+  - {fileID: 11400000, guid: e2db5633b9b273842b6cbc6908ab290d, type: 2}
+  - {fileID: 11400000, guid: e2db5633b9b273842b6cbc6908ab290d, type: 2}
+  - {fileID: 11400000, guid: e2db5633b9b273842b6cbc6908ab290d, type: 2}
+  - {fileID: 11400000, guid: e2db5633b9b273842b6cbc6908ab290d, type: 2}
+  - {fileID: 11400000, guid: 84acb79dafa7aad4db9077d7755b323d, type: 2}
   detectDistance: 10
   minWanderDistance: 5
   maxWanderDistance: 10
