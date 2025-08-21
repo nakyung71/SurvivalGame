@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public interface ITalkable
 {
-    DialogueData DialogueData { get; }
+    
     public void Talk();
+    int TalkTimes {  get; }
 }
 
 public interface IQuest
@@ -17,7 +19,9 @@ public interface IQuest
     public void AcceptQuest();
     //작동은 이 인터페이스 상속받은 NPC가 하게하기
     //내용도 그냥 다 NPC에 넣기
+    public void CheckQuestCondition();
 
+    bool IsQuestAccepted { get; }
 
 }
 
@@ -33,7 +37,8 @@ public class DialogueManager : MonoBehaviour
     bool moveToNextLine;
     TextMeshProUGUI button1Text;
     TextMeshProUGUI button2Text;
-    IQuest questNPC;
+    BaseNPC npc;
+
 
     private void Awake()
     {
@@ -54,18 +59,15 @@ public class DialogueManager : MonoBehaviour
             moveToNextLine = true;
         }
     }
-    public void SetTalk(DialogueData data)
+    public void SetTalk(DialogueData data,BaseNPC baseNPC)
     {
+        
         StartCoroutine(Talk(data));
         Debug.Log("일반 대화");
+        npc=baseNPC;
     }
 
-    public void SetTalk(DialogueData data,IQuest quest)
-    {
-        Debug.Log("퀘스트 대화");
-        questNPC=quest;
-        StartCoroutine(Talk(data));
-    }
+    
 
     IEnumerator Talk(DialogueData data)
     {
@@ -91,30 +93,69 @@ public class DialogueManager : MonoBehaviour
             }
             index++;
         }
-        if(data.nextDialogueExist==false)
-        {
-            yield return new WaitUntil(() => moveToNextLine);
 
-            dialogueUI.SetActive(false);
+        //버튼이 없으면 여기서 종료
+
+        //버튼이 있으면 클릭시 종료
+        if(data.nextDialogueExist==false&&(data.choiceButtonText.Length==0||data.choiceButtonText==null))
+        {
+            if(data.choiceButtonText==null)
+            {
+                Debug.Log("배열자체가 null");
+            }
+            else if(data.choiceButtonText.Length==0)
+            {
+                Debug.Log("배열 길이가 0");
+            }
+                yield return new WaitUntil(() => moveToNextLine);
+            CloseDialogue();
+            
         }
         else
         {
             //딕셔너리에서 다음 ID번호로 다음 데이터 가져옴
             
         }
-        CharacterManager.Instance.Player.controller.ToggleCursor();
+        
 
     }
+    void CloseDialogue()
+    {
+        dialogueUI.SetActive(false); //문제있음
+        CharacterManager.Instance.Player.controller.ToggleCursor();
+    }
 
+    void MoveToNextDialogue()
+    {
+        //딕셔너리에서 다음 데이터 찾음
+    }
 
     void TestDialogueYes()
     {
-        questNPC.AcceptQuest();
+        IQuest iquest = npc.GetComponentInChildren<IQuest>();
+        
+        if (iquest!=null)
+        {
+            Debug.Log("초기 조건 만족");
+            
+            if(iquest.IsQuestAccepted==false)
+            {
+                iquest.AcceptQuest();
+            }
+            else
+            {
+                iquest.CheckQuestCondition();
+            }
+        }
+        
+        MoveToNextDialogue();
+        CloseDialogue() ;
+        
     }
 
     void TestDialogueNo()
     {
-
+        CloseDialogue();
     }
 
     void ShowButtons(DialogueData data)

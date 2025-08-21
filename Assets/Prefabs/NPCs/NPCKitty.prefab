@@ -934,7 +934,7 @@ Animator:
   m_GameObject: {fileID: 6397291155531275063}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 26ffea2fe0b9fd248b3386ea84c86d12, type: 2}
+  m_Controller: {fileID: 9100000, guid: be8d16f9d6e203340832a5f4a45ff1ac, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -967,6 +967,7 @@ MonoBehaviour:
   minWanderWaitTime: 1
   maxWanderWaitTime: 2
   fieldOfView: 120
+  data: {fileID: 11400000, guid: 0f6d569a331be9f469b27c4dffe95efe, type: 2}
 --- !u!65 &416484954557158264
 BoxCollider:
   m_ObjectHideFlags: 0
