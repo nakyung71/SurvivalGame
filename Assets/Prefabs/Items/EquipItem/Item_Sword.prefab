@@ -113,7 +113,7 @@ MonoBehaviour:
   attackDistance: 1
   doesGatherResources: 0
   doesDealDamage: 1
-  damage: 10
+  damage: 500
 --- !u!1 &3925463893117055588
 GameObject:
   m_ObjectHideFlags: 0
