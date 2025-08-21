@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -400,6 +400,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &229619938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6135908453811752835, guid: be534758ac2af7948b4c114566cace5b, type: 3}
+  m_PrefabInstance: {fileID: 2103795634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &244302003 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6424821583215658364, guid: f334ecc67b70b08409934ff775d887ad, type: 3}
@@ -2999,6 +3004,18 @@ MeshCollider:
   m_CorrespondingSourceObject: {fileID: 5674470130679465106, guid: be534758ac2af7948b4c114566cace5b, type: 3}
   m_PrefabInstance: {fileID: 2103795634}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1987734766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229619938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffd0a2766b33304096e3f5764f3d107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2009563322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2248912217768899426, guid: e5a73c4f763059248aac91e2ef9c3a09, type: 3}
@@ -3320,6 +3337,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6157176995279090789, guid: be534758ac2af7948b4c114566cace5b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157176995279090789, guid: be534758ac2af7948b4c114566cace5b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 434bfd6528d84e643ade0d2cd5c6fe1b, type: 2}
     - target: {fileID: 6308356129711785119, guid: be534758ac2af7948b4c114566cace5b, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -3408,6 +3433,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6135908453811752835, guid: be534758ac2af7948b4c114566cace5b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1987734766}
     - targetCorrespondingSourceObject: {fileID: 888826051748502025, guid: be534758ac2af7948b4c114566cace5b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 737384206}
