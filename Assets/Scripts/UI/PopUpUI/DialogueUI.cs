@@ -6,18 +6,17 @@ using UnityEngine.InputSystem;
 
 
 
-public class DialogueUI :MonoBehaviour
+public class DialogueUI:PopUpUI
 {
-    [SerializeField] PlayerInput playerInput;
+ 
 
     private void OnEnable()
     {
-        playerInput.enabled = false;
-        Cursor.lockState = CursorLockMode.None;
+        UIManager.popUpUIStack.Push(this);
+        UIManager.Instance.ChangeUIActiveState(UIActiveState.Active);
     }
     private void OnDisable()
     {
-        playerInput.enabled=true;
-        Cursor.lockState = CursorLockMode.Locked;
+        UIManager.Instance.DisablePopUpUI();
     }
 }

@@ -51,6 +51,11 @@ public class UIManager : MonoBehaviour
         return false;
     }
 
+
+    public void ChangeUIActiveState(UIActiveState state)
+    {
+        currentState = state;
+    }
     public void ShowUI(GameObject gameObject)
     {
         

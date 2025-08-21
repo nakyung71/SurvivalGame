@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d083b7de9c11c4482fc2edea594ef7, type: 3}
+  m_Name: Penguin0
+  m_EditorClassIdentifier: 
+  TalkerName: Penguin
+  dialogueID: 0
+  dialogueLines:
+  - "\uB09C \uB0A8\uADF9\uC5D0\uC11C \uC628 \uD3AD\uADC4\uC774\uB2F9"
+  - "\uADF8\uB7F0\uB370 \uC5EC\uAE30 \uC9C0\uC5ED\uC740 \uC9C4\uC9DC \uB108\uBB34
+    \uB365\uB2F9"
+  - "\uC5BC\uC74C\uC740 \uC5C6\uC9C0\uB9CC \uADF8\uB798\uB3C4 \uB3CC\uC774\uB77C\uB3C4
+    \uC788\uC73C\uBA74 \uC870\uAE08 \uAE30\uBD84\uC774 \uAD1C\uCC2E\uC744 \uAC83\uAC19\uB2F9"
+  - "\uB108\uAC00 \uB098\uB97C \uC704\uD574 \uB3CC 2\uAC1C\uB9CC \uAD6C\uD574\uC8FC\uBA74
+    \uC88B\uACA0\uB2F9...\n\uC544\uB9C8 \uACE1\uAD2D\uC774\uB85C \uB3CC\uC744 \uCE90\uBA74
+    \uC5BB\uC744 \uC218 \uC788\uC744 \uAC83\uC774\uB2F9"
+  choiceButtonText:
+  - "\uC751 \uC54C\uACA0\uC5B4(\uB3CC 2\uAC1C\uB97C \uBAA8\uC544\uC8FC\uC790)"
+  - "\uC2EB\uC5B4 \uB098\uB3C4 \uBC14\uBE60"
+  choiceExist: 1
+  nextDialogueExist: 1
+  nextDialogueID_Button1: 0
+  nextDialogueID_Button2: 0
