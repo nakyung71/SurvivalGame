@@ -143,7 +143,7 @@ public class InventoryUI : PopUpUI
         CharacterManager.Instance.Player.itemData = null;
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         for (int i = 0; i < slots.Length; i++)
         {

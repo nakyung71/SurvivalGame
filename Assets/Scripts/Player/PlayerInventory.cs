@@ -30,5 +30,6 @@ public class PlayerInventory : MonoBehaviour
         //그냥 여기서 해도 되긴...한데 되도록 나중에 바꾸자
 
         questItemSlot.quantity += quantity;
+        inventoryUI.UpdateUI();
     }
 }

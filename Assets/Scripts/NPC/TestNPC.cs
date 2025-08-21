@@ -13,7 +13,7 @@ public class TestNPC : BaseNPC,ITalkable,IInteractable,IQuest  //모든 NPC는 Base
 
     public bool IsQuestAccepted { get; private set; } = false;
 
-    private int goalQuantity = 20;
+    private int goalQuantity = 2;
 
     //꼭 인스펙터 창에 대화 SO를 넣어야 진행이 됩니다.
 
@@ -46,6 +46,7 @@ public class TestNPC : BaseNPC,ITalkable,IInteractable,IQuest  //모든 NPC는 Base
         if(itemquantity>=goalQuantity)
         {
             CharacterManager.Instance.Player.inventory.ChangeItemQuantity(-goalQuantity);
+            
             Instantiate(successReward);
             DialogueManager.Instance.SetTalk(dialogueDatas[2], this);
         }
