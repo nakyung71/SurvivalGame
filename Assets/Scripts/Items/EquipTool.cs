@@ -31,6 +31,7 @@ public class EquipTool : Equip
             attacking = true;
             animator.SetTrigger("Attack");
             Invoke("OnCanAttack", attackRate);
+            attackSound.Swing();
         }
     }
 
