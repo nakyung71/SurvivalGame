@@ -66,7 +66,9 @@ public class EquipTool : Equip
                 if (damageable != null)
                 {
                     damageable.TakePhysicalDamage(damage);
+                    attackSound.AnimalHit();
                     Debug.Log($"[전투] {hit.collider.name} 에 {damage} 피해");
+                    
                     return; // 한 번의 스윙에 자원채집까지 함께하지 않으려면 바로 종료
                 }
             }
