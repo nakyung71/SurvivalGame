@@ -47,10 +47,17 @@ public class InventoryUI : PopUpUI
     {
         
         UIManager.popUpUIStack.Push(this);
-        
-        
-        
+
     }
+
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Tab))
+    //    {
+    //        UIManager.Instance.DisablePopUpUI();
+    //    }
+        
+    //}
     private void Start()
     {
         controller = CharacterManager.Instance.Player.controller;
@@ -98,6 +105,10 @@ public class InventoryUI : PopUpUI
         if (!IsOpen())
         {
             UIManager.Instance.ShowUI(this.gameObject);
+        }
+        else if(IsOpen())
+        {
+            UIManager.Instance.DisablePopUpUI();
         }
         
     }

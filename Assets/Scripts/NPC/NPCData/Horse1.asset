@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183ea5dc5a261c3478326fc79155339d, type: 3}
+  m_Script: {fileID: 11500000, guid: 00d083b7de9c11c4482fc2edea594ef7, type: 3}
   m_Name: Horse1
   m_EditorClassIdentifier: 
   TalkerName: Horse
-  NPCID: 1
-  NPCLines:
+  dialogueID: 0
+  dialogueLines:
   - "\uD788\uD788\uD79D! \uC88B\uC544, \uADF8\uB7FC \uD55C\uBC88 \uB0B4\uAC00 \uC694\uCCAD\uD588\uB358
     \uC7AC\uB8CC\uB97C \uAC00\uC838\uC654\uB294\uC9C0 \uCCB4\uD06C\uD574\uBCFC\uAE4C
     \uD478\uB974\uB974?"
@@ -22,6 +22,6 @@ MonoBehaviour:
   - "\uAC74\uB124\uC900\uB2E4"
   - "\uCDE8\uC18C\uD55C\uB2E4"
   choiceExist: 1
-  nextDialogueExist: 0
+  nextDialogueExist: 1
   nextDialogueID_Button1: 0
   nextDialogueID_Button2: 0

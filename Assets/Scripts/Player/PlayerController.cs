@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     bool backMovingbool;
     public bool runbool;
 
+    public PlayerInput playerInput;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        playerInput.actions.FindActionMap("UI").Enable();
     }
 
     private void FixedUpdate()
@@ -169,6 +172,7 @@ public class PlayerController : MonoBehaviour
         if(context.phase==InputActionPhase.Started)
         {
             inventory?.Invoke();
+            
             //ToggleCursor();
         }
     }

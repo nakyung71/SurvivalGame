@@ -2,7 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+
+public enum UIActiveState
+{
+    Inactive,
+    Active
+}
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -13,7 +20,8 @@ public class UIManager : MonoBehaviour
     public CraftingUI craftingUI;
     List<GameObject> openedUIList = new List<GameObject>();
     public static Stack<PopUpUI> popUpUIStack = new Stack<PopUpUI>();
-
+    [SerializeField] PlayerInput playerInput;
+    [SerializeField] UIActiveState currentState=UIActiveState.Inactive;
     private void Awake()
     {
         Instance = this;
@@ -22,7 +30,14 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-       
+       StartCoroutine(ClearStack());
+    }
+
+    IEnumerator ClearStack()
+    {
+        yield return new WaitForSeconds(1f);
+        popUpUIStack.Clear();
+
     }
     private bool CheckOpenUI(GameObject checkObject)
     {
@@ -40,8 +55,7 @@ public class UIManager : MonoBehaviour
     {
         
         gameObject.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        CharacterManager.Instance.Player.controller.ChangeCanLook(true);
+        currentState = UIActiveState.Active;
 
 
     }
@@ -51,31 +65,43 @@ public class UIManager : MonoBehaviour
     //리스트에 넣는건 본인들이지만, 결국 그걸 관리하는 건 여기서?
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        
+
+        if (currentState == UIActiveState.Active)
         {
-            //근데 단순히 끄는게 아니라 켜져있던 제일 마지막 창을 꺼야함,,
-            //스택 자료구조?
-            DisablePopUpUI();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                //근데 단순히 끄는게 아니라 켜져있던 제일 마지막 창을 꺼야함,,
+                //스택 자료구조?
+                DisablePopUpUI();
+            }
+            playerInput.actions.FindActionMap("Player").Disable();
+        }
+        else if(currentState == UIActiveState.Inactive)
+        {
+            playerInput.actions.FindActionMap("Player").Enable();
         }
     }
 
-    void DisablePopUpUI()
+    public void DisablePopUpUI()
     {
 
         Debug.Log("끄기 시도" + transform.name);
 
         if (popUpUIStack.Count > 0)
         {
-
+            currentState = UIActiveState.Active;
+            
             PopUpUI popUp = popUpUIStack.Pop();
+            Debug.Log(popUpUIStack.Count);
             if (popUp != null)
             {
                 popUp.gameObject.SetActive(false);
             }
             if(popUpUIStack.Count == 0)
             {
-                Cursor.lockState = CursorLockMode.Locked;
-                CharacterManager.Instance.Player.controller.ChangeCanLook(true);
+                currentState = UIActiveState.Inactive;
+                
             }
         }
 
