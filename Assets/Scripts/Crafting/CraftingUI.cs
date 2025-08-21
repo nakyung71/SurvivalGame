@@ -38,7 +38,11 @@ public class CraftingUI : PopUpUI
     }
     private void OnEnable()
     {
-        popUpUIStack.Push(this);
+        if(UIManager.Instance==null)
+        {
+            Debug.Log("UI매니저 인스턴스 없");
+        }
+        UIManager.popUpUIStack.Push(this);
     }
 
    
@@ -70,6 +74,7 @@ public class CraftingUI : PopUpUI
         {
             CharacterManager.Instance.Player.itemData= selectedCraftingSlot.SlotCraftingData.resultItem;
             CharacterManager.Instance.Player.inventory.inventoryUI.AddItem();
+            
             //아이템 갯수 바꾸기
             //인벤토리에 새로운 아이템 추가
         }

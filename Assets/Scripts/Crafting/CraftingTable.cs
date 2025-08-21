@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CraftingTable : MonoBehaviour,IInteractable
 {
-    [SerializeField] CraftingUI craftingUI;
+    
     public string GetInteractPrompt()
     {
         return " 아이템을 제작할 수 있는 테이블";
@@ -12,7 +12,7 @@ public class CraftingTable : MonoBehaviour,IInteractable
 
     public void OnInteract()
     {
-        craftingUI.gameObject.SetActive(true);
+        UIManager.Instance.ShowUI(UIManager.Instance.craftingUI.gameObject);
     }
 
     // Start is called before the first frame update

@@ -46,9 +46,8 @@ public class InventoryUI : PopUpUI
     private void OnEnable()
     {
         
-        popUpUIStack.Push(this);
-        Debug.Log("스택에 넣음");
-        Debug.Log(popUpUIStack.Count);
+        UIManager.popUpUIStack.Push(this);
+        
         
         
     }
@@ -96,14 +95,11 @@ public class InventoryUI : PopUpUI
 
     public void Toggle()
     {
-        if (IsOpen())
+        if (!IsOpen())
         {
-            inventoryWindow.SetActive(false);
+            UIManager.Instance.ShowUI(this.gameObject);
         }
-        else
-        {
-            inventoryWindow.SetActive(true);
-        }
+        
     }
 
     public bool IsOpen()

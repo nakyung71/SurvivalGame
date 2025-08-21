@@ -15,10 +15,11 @@ public class CraftingSlot : MonoBehaviour,IPointerClickHandler
     public CraftingData SlotCraftingData {  get; private set; }
     CraftingUI craftingUI;
 
-
+    PlayerInventory inventory;
     private void Start()
     {
         craftingUI = GetComponentInParent<CraftingUI>();
+        inventory = CharacterManager.Instance.Player.inventory;
     }
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -38,20 +39,25 @@ public class CraftingSlot : MonoBehaviour,IPointerClickHandler
         }
         else if(craftingData.neededItems.Length == 2) 
         {
-             
+            neededItem_1.sprite = craftingData.neededItems[0].itemData.icon;
+            neededItem_2.sprite=craftingData.neededItems[1].itemData.icon;
+            plusText.SetActive(true);
+            resultItem.sprite = craftingData.resultItem.icon;
         }
     }
 
 
     public bool CheckCraftingReady()
     {
-        int firstNeededItemQuantity = 0;
-        int secondNeededItemQuantity = 0;
+        int firstNeededItemQuantityOwn = 0;
+        int secondNeededItemQuantityOwn = 0;
         if(SlotCraftingData.neededItems.Length == 1)
         {
-            firstNeededItemQuantity = CharacterManager.Instance.Player.inventory.CheckItemQuantity(SlotCraftingData.neededItems[0].itemData);
-            if (firstNeededItemQuantity >= SlotCraftingData.neededItems[0].neededQuantity)
+            firstNeededItemQuantityOwn = inventory.CheckItemQuantity(SlotCraftingData.neededItems[0].itemData);
+            if (firstNeededItemQuantityOwn >= SlotCraftingData.neededItems[0].neededQuantity)
             {
+                inventory.ChangeItemQuantity(-SlotCraftingData.neededItems[0].neededQuantity);
+                
                 return true;
             }
             else
@@ -61,10 +67,11 @@ public class CraftingSlot : MonoBehaviour,IPointerClickHandler
         }
         else if (SlotCraftingData.neededItems.Length == 2)
         {
-            firstNeededItemQuantity= CharacterManager.Instance.Player.inventory.CheckItemQuantity(SlotCraftingData.neededItems[0].itemData);
-            secondNeededItemQuantity = CharacterManager.Instance.Player.inventory.CheckItemQuantity(SlotCraftingData.neededItems[1].itemData);
-            if (firstNeededItemQuantity >= SlotCraftingData.neededItems[0].neededQuantity && secondNeededItemQuantity >= SlotCraftingData.neededItems[1].neededQuantity)
+            firstNeededItemQuantityOwn= inventory.CheckItemQuantity(SlotCraftingData.neededItems[0].itemData);
+            secondNeededItemQuantityOwn = inventory.CheckItemQuantity(SlotCraftingData.neededItems[1].itemData);
+            if (firstNeededItemQuantityOwn >= SlotCraftingData.neededItems[0].neededQuantity && secondNeededItemQuantityOwn >= SlotCraftingData.neededItems[1].neededQuantity)
             {
+                inventory.ChangeItemQuantity(-SlotCraftingData.neededItems[0].neededQuantity, -SlotCraftingData.neededItems[1].neededQuantity);
                 return true;
             }
             else

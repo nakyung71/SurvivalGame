@@ -674,6 +674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingDatas:
   - {fileID: 11400000, guid: 60ad6f5ec65d808468673f9b31d93837, type: 2}
+  - {fileID: 11400000, guid: 9bf5754c911fbcc499723a121c1cd98e, type: 2}
 --- !u!114 &7988514316208902468
 MonoBehaviour:
   m_ObjectHideFlags: 0
