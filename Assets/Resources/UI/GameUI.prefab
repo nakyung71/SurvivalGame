@@ -332,8 +332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curValue: 0
-  startValue: 5
-  maxValue: 5
+  startValue: 200
+  maxValue: 200
   passiveValue: 1
   uiBar: {fileID: 4577342511350088672}
 --- !u!1 &1639855324815902626
@@ -995,8 +995,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curValue: 0
-  startValue: 5
-  maxValue: 5
+  startValue: 100
+  maxValue: 100
   passiveValue: 1
   uiBar: {fileID: 4333138868818644661}
 --- !u!1 &5733139853677933950
@@ -1327,8 +1327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curValue: 0
-  startValue: 5
-  maxValue: 5
+  startValue: 100
+  maxValue: 100
   passiveValue: 1
   uiBar: {fileID: 3745577338371668917}
 --- !u!1 &6941008485170599587
@@ -1497,8 +1497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curValue: 0
-  startValue: 5
-  maxValue: 5
+  startValue: 150
+  maxValue: 200
   passiveValue: 1
   uiBar: {fileID: 836237972804629882}
 --- !u!1 &7357237714957123853
@@ -1747,8 +1747,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curValue: 0
-  startValue: 5
-  maxValue: 5
+  startValue: 250
+  maxValue: 300
   passiveValue: 1
   uiBar: {fileID: 6131429357061557589}
 --- !u!1 &9118694473688593633
