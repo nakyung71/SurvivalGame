@@ -43,9 +43,14 @@ public class CraftingUI : PopUpUI
             Debug.Log("UI매니저 인스턴스 없");
         }
         UIManager.popUpUIStack.Push(this);
+        
+    }
+    private void OnDisable()
+    {
+       
     }
 
-   
+
 
 
 
