@@ -39,15 +39,34 @@ public class EquipTool : Equip
 
     public void OnHit()
     {
+        if (camera == null) camera = Camera.main;
+
         Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, attackDistance))
+        Debug.DrawRay(ray.origin, ray.direction * attackDistance, Color.red, 0.5f);
+
+        if (Physics.Raycast(ray, out hit, attackDistance, ~0, QueryTriggerInteraction.Ignore))
         {
-            if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource))
+            Debug.Log($"[공격 판정] {hit.collider.name} 에 맞음 (좌표: {hit.point})");
+
+            if (doesGatherResources)
             {
-                resource.Gather(hit.point, hit.normal);
+                var resource = hit.collider.GetComponentInParent<Resource>();
+                if (resource != null)
+                {
+                    Debug.Log($"[공격 판정] {resource.name} 에서 자원 채집 시도");
+                    resource.Gather(hit.point, hit.normal);
+                }
+                else
+                {
+                    Debug.LogWarning($"[공격 판정] {hit.collider.name} 오브젝트에서 Resource 스크립트를 찾을 수 없음");
+                }
             }
+        }
+        else
+        {
+            Debug.Log("[공격 판정] 레이캐스트가 아무것도 맞추지 못함 (범위 부족 또는 콜라이더 없음)");
         }
     }
 }

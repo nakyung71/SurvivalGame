@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUI : PopUpUI
 {
@@ -17,6 +18,7 @@ public class InventoryUI : PopUpUI
     public TextMeshProUGUI selectedItemDescription;
     public TextMeshProUGUI selectedItemStat;
     public TextMeshProUGUI selectedItemValue;
+    public Image selectedItemImage; //추가
     public GameObject useButton;
     public GameObject equipButton;
     public GameObject unequipButton;
@@ -84,6 +86,7 @@ public class InventoryUI : PopUpUI
         selectedItemDescription.text = string.Empty;
         selectedItemStat.text = string.Empty;
         selectedItemValue.text = string.Empty;
+        selectedItemImage.sprite = null; //추가
 
         useButton.SetActive(false);
         equipButton.SetActive(false);
@@ -197,6 +200,7 @@ public class InventoryUI : PopUpUI
         selectedItemDescription.text = selectedItem.description;
         selectedItemStat.text = string.Empty;
         selectedItemValue.text = string.Empty;
+        selectedItemImage.sprite= selectedItem.icon; //추가
         for (int i = 0; i < selectedItem.consumables.Length; i++)
         {
             selectedItemStat.text += selectedItem.consumables[i].type.ToString() + "\n";
@@ -225,6 +229,10 @@ public class InventoryUI : PopUpUI
                     case ConsumableType.Hunger:
                         condition.Eat(selectedItem.consumables[i].value);
                         break;
+                    case ConsumableType.Thirst:
+                        condition.Drink(selectedItem.consumables[i].value);
+                        break;
+                        
                 }
             }
             RemoveSelectedItem();
@@ -260,7 +268,7 @@ public class InventoryUI : PopUpUI
 
         slots[selectedItemIndex].equipped = true;
         curEquipIndex = selectedItemIndex;
-        //CharacterManager.Instance.Player.equip.EquipNew(selectedItem);
+        CharacterManager.Instance.Player.equip.EquipNew(selectedItem);
         UpdateUI();
         SelectItem(selectedItemIndex);
     }
@@ -268,7 +276,7 @@ public class InventoryUI : PopUpUI
     void UnEquip(int index)
     {
         slots[index].equipped = false;
-        //CharacterManager.Instance.Player.equip.UnEquip();
+        CharacterManager.Instance.Player.equip.UnEquip();
         UpdateUI();
 
         if (selectedItemIndex == index)
