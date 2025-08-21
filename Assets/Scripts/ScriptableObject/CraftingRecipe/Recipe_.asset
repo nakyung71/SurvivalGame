@@ -10,8 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fda9d7cd91be5542aa90cced7f041ac, type: 3}
-  m_Name: Plank
+  m_Name: Recipe_
   m_EditorClassIdentifier: 
-  neededItems:
-  - itemData: {fileID: 11400000, guid: 7d0c62cabbedfe648b9ff9f7f2e5b5fd, type: 2}
-    neededQuantity: 2
+  neededItems: []
