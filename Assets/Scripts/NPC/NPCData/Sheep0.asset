@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183ea5dc5a261c3478326fc79155339d, type: 3}
+  m_Name: Sheep0
+  m_EditorClassIdentifier: 
+  TalkerName: Sheep
+  NPCID: 3
+  NPCLines:
+  - "\uB9E4\uC560\uC560~ \uB098\uB294 \uC591\uC774\uB2E4 \uC591\uC591!"
+  - "\uB9E4\uC560\uC560~ \uC591\uC591\uC5D0\uB294 \uB180\uB7EC\uAC00\uAE30\uAC00
+    \uC815\uB9D0 \uC88B\uB2E4 \uC591\uC591!"
+  - "\uB9E4\uC560\uC560~ \uADFC\uB370 \uB108\uB294 \uC591\uC591\uAC00\uB3C4 \uC5EC\uCE5C
+    \uC548\uC0DD\uAE34\uB2E4 \uC591\uC591!"
+  - "\uB9E4\uC560\uC560~ \uAE01\uD614\uB0D0 \uC591\uC591? \uB9E4\uC560\uC560~~~"
+  choiceButtonText: []
+  choiceExist: 0
+  nextDialogueExist: 0
+  nextDialogueID_Button1: 0
+  nextDialogueID_Button2: 0
