@@ -30,6 +30,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     private bool isDead = false;
 
+
+    
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -73,18 +75,29 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         {
             temperature.TakeDamage(temperature.passiveValue * Time.deltaTime);
         }
-
-        if(IsHotPlace())
+        else if(IsHotPlace())
         {
             temperature.Add(temperature.passiveValue * Time.deltaTime);
         }
+        else
+        {
+            if(temperature.curValue > 55)
+            {
+                temperature.TakeDamage(temperature.passiveValue* 0.1f * Time.deltaTime);
+            }
 
-        
+            else if(temperature.curValue < 45)
+            {
+                temperature.Add(temperature.passiveValue * 0.1f * Time.deltaTime);
+            }
+        }
+
+
         if (stamina.curValue <= 1)
         {
-                playerController.runSpeed = 1;
-                playerController.runbool = false;
-                animator.SetBool("isRun", playerController.runbool);            
+            playerController.runSpeed = 1;
+            playerController.runbool = false;
+            animator.SetBool("isRun", playerController.runbool);
         }
 
         if (animator.GetBool("isRun") == false)

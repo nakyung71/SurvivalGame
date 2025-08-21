@@ -1024,6 +1024,7 @@ GameObject:
   - component: {fileID: -8372857919328077788}
   - component: {fileID: -8513374530136382237}
   - component: {fileID: -2202980568815825929}
+  - component: {fileID: 4701147410489081207}
   m_Layer: 10
   m_Name: EnemyDeer
   m_TagString: Untagged
@@ -1041,7 +1042,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6250128607026320624}
@@ -1127,7 +1128,9 @@ MonoBehaviour:
   health: 200
   walkSpeed: 3
   runSpeed: 7
-  dropOnDeath: []
+  dropOnDeath:
+  - {fileID: 11400000, guid: d95e9ca80479b0648ac41af2710a8161, type: 2}
+  - {fileID: 11400000, guid: d95e9ca80479b0648ac41af2710a8161, type: 2}
   detectDistance: 9
   minWanderDistance: 5
   maxWanderDistance: 10
@@ -1137,6 +1140,19 @@ MonoBehaviour:
   attackRate: 1
   attackDistance: 2
   fieldOfView: 120
+--- !u!114 &4701147410489081207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7402009758359158996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e246991ff3eddd41a61118d5e0c6d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: -2202980568815825929}
 --- !u!1 &7500468941402322376
 GameObject:
   m_ObjectHideFlags: 0

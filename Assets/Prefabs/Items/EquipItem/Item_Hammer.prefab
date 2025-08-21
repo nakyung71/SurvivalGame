@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 149492525126743595}
   - component: {fileID: 3821163410668700483}
   - component: {fileID: 5358320418620970130}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.824, y: 1.676, z: 0.131}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3362378486655022374}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1efc5c253e5cc49b785ae56772b4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 069db7d1c71b29f42a0aa24978774eb2, type: 2}
 --- !u!114 &5358320418620970130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   doesGatherResources: 0
   doesDealDamage: 0
   damage: 0
+  toolKind: 0
 --- !u!1 &8321616945356931823
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +126,7 @@ GameObject:
   - component: {fileID: 3362378486655022374}
   - component: {fileID: 5766138002561943395}
   - component: {fileID: 7698127115793084522}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hammer_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

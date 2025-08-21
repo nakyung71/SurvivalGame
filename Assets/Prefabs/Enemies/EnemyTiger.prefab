@@ -929,6 +929,7 @@ GameObject:
   - component: {fileID: 5568929734795865231}
   - component: {fileID: 3567487266168128408}
   - component: {fileID: 4078881728775532751}
+  - component: {fileID: 6617797706507868207}
   m_Layer: 10
   m_Name: EnemyTiger
   m_TagString: Untagged
@@ -946,7 +947,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3178936492765605813}
@@ -1008,10 +1009,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460ad31ae227d6e438a03dfcd56f1c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3000
+  health: 500
   walkSpeed: 4
   runSpeed: 12
-  dropOnDeath: []
+  dropOnDeath:
+  - {fileID: 11400000, guid: e2db5633b9b273842b6cbc6908ab290d, type: 2}
+  - {fileID: 11400000, guid: e2db5633b9b273842b6cbc6908ab290d, type: 2}
+  - {fileID: 11400000, guid: e2db5633b9b273842b6cbc6908ab290d, type: 2}
+  - {fileID: 11400000, guid: e2db5633b9b273842b6cbc6908ab290d, type: 2}
   detectDistance: 10
   minWanderDistance: 5
   maxWanderDistance: 10
@@ -1042,6 +1047,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6617797706507868207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5883155896844355918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e246991ff3eddd41a61118d5e0c6d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 3567487266168128408}
 --- !u!1 &6083925854692512673
 GameObject:
   m_ObjectHideFlags: 0

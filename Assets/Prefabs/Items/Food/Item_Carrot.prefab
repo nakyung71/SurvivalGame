@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 916954203612323770}
   - component: {fileID: 1575134734325274840}
   - component: {fileID: 5280966974550861095}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Carrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1345043524481822896}
   - component: {fileID: 8003925264116662055}
   - component: {fileID: 5075943778732793783}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Carrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.717, y: 0.938, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 916954203612323770}
@@ -178,3 +178,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1efc5c253e5cc49b785ae56772b4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: d95e9ca80479b0648ac41af2710a8161, type: 2}

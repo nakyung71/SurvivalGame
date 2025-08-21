@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     bool backMovingbool;
     public bool runbool;
 
+    public PlayerInput playerInput;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        playerInput.actions.FindActionMap("UI").Enable();
     }
 
     private void FixedUpdate()
@@ -85,7 +88,6 @@ public class PlayerController : MonoBehaviour
     }
     private void Move()
     {
-
             Vector3 dir = transform.forward * moveInput.y + transform.right * moveInput.x;
             dir *= moveSpeed * runSpeed;
             dir.y = rb.velocity.y;
@@ -170,14 +172,21 @@ public class PlayerController : MonoBehaviour
         if(context.phase==InputActionPhase.Started)
         {
             inventory?.Invoke();
-            ToggleCursor();
+            
+            //ToggleCursor();
         }
     }
 
+
+    public void ChangeCanLook(bool canlook)
+    {
+        canLook = canlook;
+    }
     public void ToggleCursor()
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
+        Debug.Log("≈‰±€");
     }
 }

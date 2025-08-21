@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1017742913505606106}
   - component: {fileID: 1116445215307811121}
   - component: {fileID: 7388539726378715742}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Bread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.939, y: 1.124, z: -0.62}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4050375171859060512}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1efc5c253e5cc49b785ae56772b4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 25af1e28df6d23f49b77a51edd2bb3ed, type: 2}
 --- !u!1 &6620293447599069532
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4050375171859060512}
   - component: {fileID: 1589192078020459938}
   - component: {fileID: 8967601350468425939}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bread
   m_TagString: Untagged
   m_Icon: {fileID: 0}

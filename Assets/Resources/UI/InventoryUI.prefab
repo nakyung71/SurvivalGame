@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Equip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72b8d6a8c99c94940b58d3692fde1aaa, type: 2}
   m_sharedMaterial: {fileID: 5842604467429119301, guid: 72b8d6a8c99c94940b58d3692fde1aaa, type: 2}
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Use
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72b8d6a8c99c94940b58d3692fde1aaa, type: 2}
   m_sharedMaterial: {fileID: 5842604467429119301, guid: 72b8d6a8c99c94940b58d3692fde1aaa, type: 2}
@@ -889,6 +889,7 @@ MonoBehaviour:
   selectedItemDescription: {fileID: 7000882366647852907}
   selectedItemStat: {fileID: 3305421421274500276}
   selectedItemValue: {fileID: 5573432212736323741}
+  selectedItemImage: {fileID: 0}
   useButton: {fileID: 295877552462222732}
   equipButton: {fileID: 6796402998055734549}
   unequipButton: {fileID: 6812230838227696441}
@@ -995,7 +996,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Discard
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72b8d6a8c99c94940b58d3692fde1aaa, type: 2}
   m_sharedMaterial: {fileID: 5842604467429119301, guid: 72b8d6a8c99c94940b58d3692fde1aaa, type: 2}
@@ -1338,7 +1339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: UnEquip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72b8d6a8c99c94940b58d3692fde1aaa, type: 2}
   m_sharedMaterial: {fileID: 5842604467429119301, guid: 72b8d6a8c99c94940b58d3692fde1aaa, type: 2}
@@ -1880,7 +1881,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6531755986045043644}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2030088172295559394}
+        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
+        m_MethodName: OnEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6812230838227696441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,7 +2014,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7292490258652352531}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2030088172295559394}
+        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
+        m_MethodName: OnUnEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6922965345420465093
 GameObject:
   m_ObjectHideFlags: 0

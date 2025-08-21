@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5aec86578e91fc941bbf9099aa0a5f19
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - audioSource: {instanceID: 0}
+  - catNPC: {fileID: 8300000, guid: d9fda1cb25dcc4b47a76f6bbf9180566, type: 3}
+  - horseNPC: {fileID: 8300000, guid: 6d669a7aa58f71b4aa089029e556148b, type: 3}
+  - sheepNPC: {fileID: 8300000, guid: 55cbcfae71d57974bbb736646e546cc2, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

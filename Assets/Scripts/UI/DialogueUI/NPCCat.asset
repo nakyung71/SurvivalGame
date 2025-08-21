@@ -24,8 +24,8 @@ MonoBehaviour:
     \uAC08\uB4F1\uC744 \uD574\uACB0\uD560 \uBC29\uBC95\uB3C4 \uC2A4\uC2A4\uB85C \uCC3E\uC544\uC57C\uD574"
   - "\uADF8\uB7FC... \uD654\uC774\uD305\uC774\uC57C?!"
   choiceButtonText:
-  - "\uD14C\uC2A4\uD2B81"
-  - "\uD14C\uC2A4\uD2B82"
+  - "\uC5B4...? \uC54C\uACA0\uC5B4 \uD55C\uBC88 \uB178\uB825\uD574\uBCF4\uC9C0 \uBB50"
+  - "(\uB3C4\uB9DD\uAC04\uB2E4)"
   choiceExist: 1
   nextDialogueExist: 0
   nextDialogueID_Button1: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3469036939551906100}
   - component: {fileID: 6922923150491502245}
   - component: {fileID: 837056964956590113}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Soda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7229883618373712791}
   - component: {fileID: 1150044381318190368}
   - component: {fileID: 4709924635953086527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Soda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.939, y: 2.143, z: 0.057}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3469036939551906100}
@@ -178,4 +178,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1efc5c253e5cc49b785ae56772b4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: e2db5633b9b273842b6cbc6908ab290d, type: 2}

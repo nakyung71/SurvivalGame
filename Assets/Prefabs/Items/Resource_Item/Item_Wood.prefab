@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7944219944225555038}
   - component: {fileID: 2253904083233566066}
   - component: {fileID: 8940218411230205225}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7436062608486208149}
   - component: {fileID: 284412716329874106}
   - component: {fileID: 4083338335046219054}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.893, y: 1.086, z: 6.022}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7944219944225555038}
@@ -139,7 +139,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 0.25, z: 0.25}
-  m_Center: {x: 0, y: 0.15, z: 0}
+  m_Center: {x: 0, y: 0.12, z: 0}
 --- !u!54 &284412716329874106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,3 +179,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1efc5c253e5cc49b785ae56772b4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 7d0c62cabbedfe648b9ff9f7f2e5b5fd, type: 2}

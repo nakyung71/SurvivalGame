@@ -9,10 +9,6 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private Transform player;          // 플레이어 Transform 할당
     [SerializeField] private MeshCollider[] fieldAreas;  // 여러 개 할당 가능, 필드 범위로 쓸 바닥(Ground의 자식 오브젝트로 지정)
 
-    [Header("NPC Prefabs")]
-    public GameObject Kitty;
-    public GameObject Penguin;
-
     [Header("Enemy Prefabs")]
     public GameObject Chicken;
     public GameObject Deer;
@@ -20,58 +16,46 @@ public class NPCSpawner : MonoBehaviour
     public GameObject Tiger;
 
     [Header("Spawn Settings")]
-    [SerializeField] private float npcSpawnDistance = 5f;
     [SerializeField] private LayerMask groundMask = ~0;   // 지면 레이어(필요시 설정)
     [SerializeField] private float navMeshMaxSampleDist = 8f;
     [SerializeField] private float minSeparation = 1.0f;  // 서로 겹치지 않도록 간단한 거리 제한
 
-    private readonly List<Vector3> _spawned = new();
+    [Header("No-Spawn Zone")]
+    [SerializeField] private Vector3 noSpawnCenter = Vector3.zero; // (0,0,0)
+    [SerializeField] private float noSpawnRadius = 30f;            // 30m
+    [SerializeField] private bool noSpawnUseXZ = true;             // 수평거리 기준
+
+    // 살아있는 개체 추적(프리팹별)
+    private readonly Dictionary<GameObject, HashSet<SpawnedUnit>> _live = new();
 
     private void Start()
     {
-        // NPC 2마리(고양이, 펭귄) ? 플레이어 주변에서 각각 1마리씩
-        SpawnNearPlayer(Kitty);
-        SpawnNearPlayer(Penguin);
 
-        // 적들 ? 필드 전체에서 지정 수량만큼
+        // 적들 필드 전체에서 지정 수량만큼
         SpawnInField(Chicken, 25);
         SpawnInField(Deer, 10);
         SpawnInField(Dog, 10);
         SpawnInField(Tiger, 1);
     }
 
-    private void SpawnNearPlayer(GameObject prefab)
-    {
-        Vector3 ring = RandomPointOnRing(player.position, npcSpawnDistance);
-        Vector3 ground = ProjectToGround(ring);
-
-        if (!TryGetNavmeshPos(ground, navMeshMaxSampleDist, out var navPos)) return;
-        if (!IsFarEnough(navPos)) return;
-
-        var go = Instantiate(prefab, navPos, Quaternion.identity);
-
-        // 프리팹에서 NavMeshAgent는 반드시 Disabled 상태여야 함!
-        var ag = go.GetComponent<NavMeshAgent>();
-        if (ag != null)
-        {
-            ag.enabled = false;               // 안전
-            go.transform.position = navPos;   // 보정 위치
-            ag.enabled = true;                // 이제 켬
-            ag.Warp(navPos);                  // 확실히 NavMesh 위로 배치
-        }
-    }
-
     private void SpawnInField(GameObject prefab, int count)
     {
+        if (prefab == null || count <= 0) return;
+
         for (int i = 0; i < count; i++)
         {
             const int maxTries = 25;
+            bool spawned = false;
+
             for (int t = 0; t < maxTries; t++)
             {
                 Vector3 probe = ProjectToGround(RandomPointInArea());
 
                 // 필드가 넓으면 샘플 거리 조금 늘리세요(예: 8~12)
                 if (!TryGetNavmeshPos(probe, navMeshMaxSampleDist, out var navPos)) continue;
+
+                if (IsInNoSpawnZone(navPos)) continue;
+                
                 if (!IsFarEnough(navPos)) continue;
 
                 var go = Instantiate(prefab, navPos, Quaternion.identity);
@@ -84,8 +68,33 @@ public class NPCSpawner : MonoBehaviour
                     ag.enabled = true;
                     ag.Warp(navPos);
                 }
+
+                // 최종 위치로 등록 (겹침 판단용)
+                RegisterInstance(prefab, go);
+                spawned = true;
                 break;
             }
+
+            if (!spawned)
+            {
+                Debug.LogWarning($"[NPCSpawner] {prefab.name} 스폰 실패: 위치 찾기 실패");
+            }
+        }
+    }
+
+    // 금지 구역 판정
+    private bool IsInNoSpawnZone(Vector3 pos)
+    {
+        float r2 = noSpawnRadius * noSpawnRadius;
+        if (noSpawnUseXZ)
+        {
+            Vector2 p = new Vector2(pos.x, pos.z);
+            Vector2 c = new Vector2(noSpawnCenter.x, noSpawnCenter.z);
+            return (p - c).sqrMagnitude < r2;
+        }
+        else
+        {
+            return (pos - noSpawnCenter).sqrMagnitude < r2;
         }
     }
 
@@ -146,13 +155,43 @@ public class NPCSpawner : MonoBehaviour
         return false;
     }
 
+    public void OnUnitDestroyed(GameObject prefab, SpawnedUnit marker)
+    {
+        // 목록에서 제거
+        if (prefab != null && _live.TryGetValue(prefab, out var set))
+            set.Remove(marker);
+
+        // 죽은 만큼 보충
+        SpawnInField(prefab, 1);
+    }
+
+    private void RegisterInstance(GameObject prefab, GameObject instance)
+    {
+        var marker = instance.GetComponent<SpawnedUnit>();
+        if (marker == null) marker = instance.AddComponent<SpawnedUnit>();
+        marker.spawner = this;
+        marker.prefabKey = prefab;
+
+        if (!_live.TryGetValue(prefab, out var set))
+        {
+            set = new HashSet<SpawnedUnit>();
+            _live[prefab] = set;
+        }
+        set.Add(marker);
+    }
+
     private bool IsFarEnough(Vector3 pos)
     {
-        foreach (var p in _spawned)
+        float minSqr = minSeparation * minSeparation;
+        foreach (var kv in _live)
         {
-            if (Vector3.SqrMagnitude(p - pos) < minSeparation * minSeparation) return false;
+            foreach (var unit in kv.Value)
+            {
+                if (unit == null) continue;
+                var t = unit.transform;
+                if ((t.position - pos).sqrMagnitude < minSqr) return false;
+            }
         }
-        _spawned.Add(pos);
         return true;
     }
 

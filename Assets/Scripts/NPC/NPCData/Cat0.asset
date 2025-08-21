@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d083b7de9c11c4482fc2edea594ef7, type: 3}
+  m_Name: Cat0
+  m_EditorClassIdentifier: 
+  TalkerName: Cat
+  dialogueID: 0
+  dialogueLines:
+  - "\uBC18\uAC11\uB2E4\uB0E5~ \uB098\uB294 \uADC0\uC5EC\uC6B4 \uC544\uAE30 \uACE0\uC591\uC774\uB2E4\uB0E5!"
+  - "\uADF8\uB7F0\uB370.. \uB0B4\uAC00 \uACE0\uBBFC\uC774 \uC788\uB2E4\uB0E5.. \uC7A0\uC744
+    \uC790\uB824\uACE0 \uB204\uC6E0\uB294\uB370 \uBC14\uB2E5\uC774 \uB108\uBB34 \uCD95\uCD95\uD574\uC11C
+    \uB9D0\uC774\uB2E4\uB0E5"
+  - "\uADF8\uB798\uC11C\uB9D0\uC778\uB370, \uB098\uD55C\uD14C \"\uB098\uBB34 \uD310\uC790
+    1\uAC1C\"\uB97C \uAC00\uC838\uB2E4 \uC904\uC218 \uC788\uB0E5?!"
+  - "\uC54C\uACA0\uB2E4\uBA74 \uBA38\uB9AC\uB97C \uC4F0\uB2E4\uB4EC\uC5B4\uB2EC\uB77C\uB0E5!"
+  choiceButtonText:
+  - "\uC4F0\uB2E4\uB4EC\uC5B4\uC900\uB2E4 (\uB098\uBB34\uD310\uC790 1\uAC1C\uB97C
+    \uAC00\uC838\uC628\uB2E4)"
+  - "\uBB50\uB798\uB294\uAC70\uC57C..."
+  choiceExist: 1
+  nextDialogueExist: 1
+  nextDialogueID_Button1: 0
+  nextDialogueID_Button2: 0

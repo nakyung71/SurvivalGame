@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6027501426114588369}
   - component: {fileID: 1635193067017820228}
   - component: {fileID: -7383958520198051751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.873, y: 1.086, z: 4.198}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4831039542515349891}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1efc5c253e5cc49b785ae56772b4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: f0744bbb3508ff544bcc6a97f18d35dd, type: 2}
 --- !u!114 &-7383958520198051751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   attackDistance: 1
   doesGatherResources: 0
   doesDealDamage: 1
-  damage: 10
+  damage: 500
 --- !u!1 &3925463893117055588
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 4831039542515349891}
   - component: {fileID: 6126810414651972426}
   - component: {fileID: 8793918496245996196}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

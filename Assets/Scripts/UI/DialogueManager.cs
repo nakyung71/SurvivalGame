@@ -8,8 +8,9 @@ using UnityEngine.UI;
 
 public interface ITalkable
 {
-    DialogueData DialogueData { get; }
+    
     public void Talk();
+    int TalkStep {  get; }
 }
 
 public interface IQuest
@@ -18,7 +19,9 @@ public interface IQuest
     public void AcceptQuest();
     //작동은 이 인터페이스 상속받은 NPC가 하게하기
     //내용도 그냥 다 NPC에 넣기
+    public void CheckQuestCondition();
 
+    bool IsQuestAccepted { get; }
 
 }
 
@@ -68,21 +71,29 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator Talk(DialogueData data)
     {
-        CharacterManager.Instance.Player.controller.ToggleCursor();
+        //CharacterManager.Instance.Player.controller.ToggleCursor();
         dialogueUI.SetActive(true);
         button1.gameObject.SetActive(false);
         button2.gameObject.SetActive(false);
         int index = 0;
         speakerNameText.SetText(data.TalkerName);
         moveToNextLine = true;
+        Coroutine currentCoroutine = null;
 
-        while(index<data.dialogueLines.Length)
+        while (index<data.dialogueLines.Length)
         {
             
             yield return new WaitUntil(() => moveToNextLine);
 
             moveToNextLine = false;
-            dialogueText.SetText(data.dialogueLines[index]);
+            if(currentCoroutine != null)
+            {
+                StopCoroutine(currentCoroutine);
+                
+            }
+            dialogueText.text=string.Empty;
+            currentCoroutine= StartCoroutine(SetTypingEffect( data.dialogueLines[index]));
+            
             if (data.choiceExist && index == data.dialogueLines.Length - 1)
             {
                 Debug.Log(index);
@@ -129,12 +140,22 @@ public class DialogueManager : MonoBehaviour
 
     void TestDialogueYes()
     {
+        IQuest iquest = npc.GetComponentInChildren<IQuest>();
         
-        npc.GetComponentInChildren<IQuest>()?.AcceptQuest();
-        if (npc.GetComponentInChildren<IQuest>() == null)
+        if (iquest!=null)
         {
-            Debug.Log("컴포넌트 못찾음");
+            Debug.Log("초기 조건 만족");
+            
+            if(iquest.IsQuestAccepted==false)
+            {
+                iquest.AcceptQuest();
+            }
+            else
+            {
+                iquest.CheckQuestCondition();
+            }
         }
+        
         MoveToNextDialogue();
         CloseDialogue() ;
         
@@ -159,6 +180,16 @@ public class DialogueManager : MonoBehaviour
        //중요한거는 눌렀을때 대화마다 다른 것이 시행되어야해
        //그리고 어떤건 대화로 이어지고 어떤건 퀘스트로 이어지고
        
+    }
+
+    IEnumerator SetTypingEffect(string text)
+    {
+        
+        foreach(char letter  in text)
+        {
+            yield return null;
+            dialogueText.text += letter;
+        }
     }
     
 }

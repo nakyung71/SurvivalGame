@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4076454753816094409}
   - component: {fileID: 7461927591139555589}
   - component: {fileID: 1220300703173916673}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1efc5c253e5cc49b785ae56772b4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: ee2343b8427320149a6cb02dde688a5a, type: 2}
 --- !u!114 &1220300703173916673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 3187879563429596161}
   - component: {fileID: 5621666330828163734}
   - component: {fileID: 8559234933567572686}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shield_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
