@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class NPC : BaseNPC, ITalkable, IInteractable, IQuest
 {
-    [SerializeField] DialogueData[] dialogueDatas;
+    [SerializeField] NPCData[] NPCDatas;
 
     public int TalkTimes { get; private set; } = 0;
 
@@ -40,7 +40,7 @@ public class NPC : BaseNPC, ITalkable, IInteractable, IQuest
         {
             CharacterManager.Instance.Player.inventory.ChangeItemQuantity(-goalQuantity);
             Instantiate(successReward);
-            DialogueManager.Instance.SetTalk(dialogueDatas[2], this);
+            // DialogueManager.Instance.SetTalk(NPCDatas[0], this);
         }
     }
 
@@ -74,12 +74,12 @@ public class NPC : BaseNPC, ITalkable, IInteractable, IQuest
     {
         if (IsQuestAccepted == false)
         {
-            DialogueManager.Instance.SetTalk(dialogueDatas[0], this);
+            // DialogueManager.Instance.SetTalk(dialogueDatas[0], this);
             TalkTimes++;
         }
         else
         {
-            DialogueManager.Instance.SetTalk(dialogueDatas[1], this);
+            // DialogueManager.Instance.SetTalk(dialogueDatas[1], this);
         }
 
         // 대화 경로는 DialogueManager.Instance.SetTalk(data,this); 이며,

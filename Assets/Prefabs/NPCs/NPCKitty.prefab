@@ -957,7 +957,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f520227a19beef24bad3f2129df6baed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 0f6d569a331be9f469b27c4dffe95efe, type: 2}
+  NPCDatas:
+  - {fileID: 11400000, guid: 3179161737e170547b145adabaa91fbb, type: 2}
+  - {fileID: 11400000, guid: d03f117799dbfa14aaf61dc02b1a1b1b, type: 2}
+  - {fileID: 11400000, guid: 701cdba479f9788448ea147b71341075, type: 2}
+  questItemData: {fileID: 11400000, guid: e2db5633b9b273842b6cbc6908ab290d, type: 2}
+  successReward: {fileID: 2168309282679505631, guid: 69f6ba3abbc464c40b7f19b74c849f8c, type: 3}
 --- !u!65 &416484954557158264
 BoxCollider:
   m_ObjectHideFlags: 0
