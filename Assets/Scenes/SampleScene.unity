@@ -276,6 +276,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 726697020}
   m_SourcePrefab: {fileID: 100100000, guid: fb2b6dcdde9fd29458fab0926b34c0eb, type: 3}
+--- !u!114 &25186276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1979315801650146590, guid: e5a73c4f763059248aac91e2ef9c3a09, type: 3}
+  m_PrefabInstance: {fileID: 1838916750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &26161150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4094,6 +4105,10 @@ PrefabInstance:
       propertyPath: inventoryWindow
       value: 
       objectReference: {fileID: 2009563322}
+    - target: {fileID: 2030088172295559394, guid: e5a73c4f763059248aac91e2ef9c3a09, type: 3}
+      propertyPath: selectedItemImage
+      value: 
+      objectReference: {fileID: 25186276}
     - target: {fileID: 2102369957816786016, guid: e5a73c4f763059248aac91e2ef9c3a09, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
